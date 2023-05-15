@@ -22,7 +22,7 @@ class RecipeService {
     }
     
     // MARK: - Methods
-    func getRecipe(for ingredients: [String], callback: @escaping(Bool, Recipe?) -> Void) {
+    func getRecipe(for ingredients: [String], callback: @escaping(Bool, Welcome?) -> Void) {
         
         let allURL = RecipeAPI.url + ingredients.joined(separator: ",")
         
@@ -30,7 +30,8 @@ class RecipeService {
         request.httpMethod = HTTPMethod.get.rawValue
         
         task?.cancel()
-        task = recipeSession.dataTask(with: request) {data, response, error in DispatchQueue.main.async {
+        task = recipeSession.dataTask(with: request) {data, response, error in
+            DispatchQueue.main.async {
             guard let data = data, error == nil else {
                 callback(false, nil)
                 return
@@ -39,15 +40,15 @@ class RecipeService {
                 callback(false, nil)
                 return
             }
-            guard let responseJSON = try? JSONDecoder().decode(Recipe.self, from: data) else {
+            guard let responseJSON = try? JSONDecoder().decode(Welcome.self, from: data) else {
                 callback(false, nil)
                 return
             }
             print(responseJSON)
-            let recipe = responseJSON
+                let recipe = responseJSON
             callback(true, recipe)
-            
-        }
+
+            }
         }
         task?.resume()
     }

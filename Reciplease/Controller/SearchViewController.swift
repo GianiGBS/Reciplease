@@ -10,21 +10,23 @@ import UIKit
 class SearchViewController: UIViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var searchBarView: UISearchBar!
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var searchForRecipeButton: UIButton!
 
     // MARK: - Properties
     static var cellIndentifier = "IngredientCell"
     var ingredientSearchList : [String] = []
     let recipeManager = RecipeManager()
+    let tableViewC = ListTableViewController()
 
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
         recipeManager.delegate = self
-
-        // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,37 +36,40 @@ class SearchViewController: UIViewController {
     // MARK: - Actions
     @IBAction func addButtonTapped() {
         guard let ingredientName = ingredientTextField.text, !ingredientName.isEmpty  else {
-                return
+                return self.presentAlert(title: "Entrée vide",
+                                         message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
         }
         ingredientSearchList.append(ingredientName)
         tableView.reloadData()
+        ingredientTextField.text = ""
     }
-    @IBAction func clear() {
+    @IBAction func clearButtonTapped() {
         ingredientSearchList.removeAll()
         tableView.reloadData()
     }
-    @IBAction func searchForRecipeTapped() {
-        recipeManager.getData(ingredientToFound: ingredientSearchList)
+    @IBAction func searchForRecipeButtonTapped() {
+        ingredientForSearchShouldReturn()
         
     }
     // MARK: - Methods
-    func ingredientForSearchShouldReturn(ingredients: [String]?) {
-        guard let listOfIngredients = ingredients, !listOfIngredients.isEmpty else {
-        return self.presentAlert(title: "Entrée vide",
-                          message: "Il faut entrer le texte.\nVeuillez réessayer.")
-    }
-        recipeManager.getData(ingredientToFound: ingredients!)
-    return
+    func ingredientForSearchShouldReturn() {
+        if !ingredientSearchList.isEmpty {
+            recipeManager.getData(ingredientToFound: ingredientSearchList)
+        } else {
+        self.presentAlert(title: "Entrée vide",
+                          message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
+            
+        }
     }
 }
 // MARK: - Delegate Pattern
 extension SearchViewController: ViewDelegate {
     func updateView() {
-        guard let data = recipeManager.data, !data.label.isEmpty else {
+        guard let data = recipeManager.data?.hits, !data.isEmpty else {
             return self.presentAlert(title: "Erreur", message: "Aucune données.")
     }
-        //textViewTo.text = "\(data.data.translations[0].translatedText)"
-
+        print(data)
+        // Afficher la tableview de recette
     }
     
     func toggleActivityIndicator(shown: Bool) {
@@ -88,29 +93,34 @@ extension SearchViewController: UITextFieldDelegate {
 extension SearchViewController: UISearchBarDelegate {
     
 }
-// MARK: - UITableView - Delegate
-extension SearchViewController: UITableViewDelegate {
-    
-}
 // MARK: - UITableView - DataSource
 extension SearchViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        IngredientService.shared.ingredientSearchList.count
+
         ingredientSearchList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchViewController.cellIndentifier, for: indexPath)
-//        let ingredient = IngredientService.shared.ingredientSearchList[indexPath.row]
+
         let ingredient = ingredientSearchList[indexPath.row]
-//        UIListContentConfiguration
+
         cell.textLabel?.text = ingredient
         
         return cell
     }
     
     
+}
+// MARK: - UITableView - Delegate
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            ingredientSearchList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 }

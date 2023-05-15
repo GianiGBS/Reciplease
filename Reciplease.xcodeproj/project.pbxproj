@@ -21,6 +21,9 @@
 		C2BB2A662A02B2040054F369 /* RecipeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A652A02B2040054F369 /* RecipeURL.swift */; };
 		C2BB2A682A0955510054F369 /* NetWorkManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A672A0955510054F369 /* NetWorkManagement.swift */; };
 		C2BB2A6B2A0957630054F369 /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A6A2A0957630054F369 /* RecipeManager.swift */; };
+		C2BB2A702A0C01890054F369 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */; };
+		C2BB2A722A0D70F50054F369 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */; };
+		C2BB2A742A0EA5950054F369 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A732A0EA5950054F369 /* RecipeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		C2BB2A672A0955510054F369 /* NetWorkManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkManagement.swift; sourceTree = "<group>"; };
 		C2BB2A6A2A0957630054F369 /* RecipeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeManager.swift; sourceTree = "<group>"; };
 		C2BB2A6C2A0A92F00054F369 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		C2BB2A732A0EA5950054F369 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 				C2BA639F29E5B5CE0052484C /* Assets.xcassets */,
 				C2BA63A129E5B5CE0052484C /* LaunchScreen.storyboard */,
 				C2BA639929E5B5CD0052484C /* Main.storyboard */,
+				C2BB2A732A0EA5950054F369 /* RecipeTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,6 +127,8 @@
 			children = (
 				C2BA63BA29E625AE0052484C /* SearchViewController.swift */,
 				C2BA63BC29E625C90052484C /* FavoriteViewController.swift */,
+				C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */,
+				C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -264,13 +273,16 @@
 				C2BA63BB29E625AE0052484C /* SearchViewController.swift in Sources */,
 				C2BB2A682A0955510054F369 /* NetWorkManagement.swift in Sources */,
 				C2BB2A6B2A0957630054F369 /* RecipeManager.swift in Sources */,
+				C2BB2A742A0EA5950054F369 /* RecipeTableViewCell.swift in Sources */,
 				C2BA639E29E5B5CD0052484C /* Reciplease.xcdatamodeld in Sources */,
 				C2BB2A5829FB2B950054F369 /* Recipe.swift in Sources */,
+				C2BB2A722A0D70F50054F369 /* ListTableViewController.swift in Sources */,
 				C2BB2A662A02B2040054F369 /* RecipeURL.swift in Sources */,
 				C2BA639429E5B5CD0052484C /* AppDelegate.swift in Sources */,
 				C2BB2A642A02A42C0054F369 /* RecipeService.swift in Sources */,
 				C2BA63BD29E625C90052484C /* FavoriteViewController.swift in Sources */,
 				C2BA639629E5B5CD0052484C /* SceneDelegate.swift in Sources */,
+				C2BB2A702A0C01890054F369 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,9 +461,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = StudioCreoliste.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -476,9 +491,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = StudioCreoliste.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
