@@ -20,6 +20,7 @@ class ListTableViewController: UITableViewController {
         super.viewDidLoad()
         recipeModel.delegate = self
         recipeModel.getData(ingredientToFound: ingredients)
+        tableView.rowHeight = 200
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,12 +43,13 @@ class ListTableViewController: UITableViewController {
         
         let recipe = recipes[indexPath.row]
         
-        guard let background = recipe.image, let title = recipe.label, let subtitle = recipe.ingredients?.description,
-              !background.isEmpty, !title.isEmpty, !subtitle.isEmpty else {
+        guard let imageUrl = recipe.image,
+              let title = recipe.label,
+              let subtitle = recipe.ingredientLines?.joined(separator: ", ")
+        else {
             return recipecell
         }
-        recipecell.configure(background: background, title: title, subtitle: subtitle)
-
+        recipecell.configure(imageUrl: URL(string: imageUrl)!, title: title, subtitle: subtitle)
         
         return recipecell
     }
@@ -55,6 +57,7 @@ class ListTableViewController: UITableViewController {
 
 // MARK: - Delegate Pattern
 extension ListTableViewController: ViewDelegate {
+
     func updateView() {
         self.recipes = recipeModel.recipeList
         tableView.reloadData()

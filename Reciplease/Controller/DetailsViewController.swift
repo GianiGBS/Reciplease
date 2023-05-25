@@ -8,22 +8,43 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
+    
+    // MARK: - Outlet
+    @IBOutlet weak var recipeImage: UIImageView!
+    @IBOutlet weak var recipeTtile: UILabel!
+    @IBOutlet weak var ingredientsList: UILabel!
+    @IBOutlet weak var favButton: UIButton!
 
+    // MARK: - Properties
+
+    // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Actions
+    @IBAction func favButtonTapped(_ sender: Any) {
+        
     }
-    */
+    @IBAction func getDirectionsTapped(_ sender: Any) {
+        
+    }
+    // MARK: - Methods
+    
+}
 
+// MARK: - Download image from URL
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }

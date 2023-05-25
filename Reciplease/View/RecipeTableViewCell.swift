@@ -26,8 +26,8 @@ class RecipeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     // MARK: - Methods
-    func configure(background: String, title: String, subtitle: String) {
-        backgroundImage.image = UIImage(named: background)
+    func configure(imageUrl: URL, title: String, subtitle: String) {
+        backgroundImage.load(url: imageUrl)
         titleLabel.text = title
         subtitleLabel.text = subtitle
     }

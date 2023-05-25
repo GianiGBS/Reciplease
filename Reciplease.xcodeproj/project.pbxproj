@@ -105,8 +105,8 @@
 				C2BA63A429E5B5CE0052484C /* Info.plist */,
 				C2BA63C329F02AE60052484C /* CoreData */,
 				C2BA63AC29E5B7740052484C /* Model */,
-				C2BA63AB29E5B73F0052484C /* Controller */,
 				C2BA63AA29E5B7330052484C /* View */,
+				C2BA63AB29E5B73F0052484C /* Controller */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
@@ -126,9 +126,9 @@
 			isa = PBXGroup;
 			children = (
 				C2BA63BA29E625AE0052484C /* SearchViewController.swift */,
-				C2BA63BC29E625C90052484C /* FavoriteViewController.swift */,
-				C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */,
 				C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */,
+				C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */,
+				C2BA63BC29E625C90052484C /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
