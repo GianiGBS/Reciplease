@@ -11,30 +11,24 @@ import Foundation
 class RecipeManager {
 
     // MARK: - Properties
-    var data: Welcome?
-    var recipeList: [Recipe] = []
+//    var data: Welcome?
+    public private (set) var recipeList: [Recipe] = []
     let recipeService = RecipeService.shared
     public weak var delegate: ViewDelegate?
 
     // MARK: - Methods
     public func getData(ingredientToFound: [String]) {
         // self.delegate?.toggleActivityIndicator(shown: true)
-        recipeService.getRecipe(for: ingredientToFound ) { success, recipe in
+        recipeService.getRecipe(for: ingredientToFound ) { success, data in
             // self.delegate?.toggleActivityIndicator(shown: false)
-            guard let recipe = recipe, success == true else {
+            guard let data = data, success == true, let hits = data.hits else {
                 self.delegate?.presentAlert(title: "Echec de l'appel",
                                             message: "EDAMAM.API n'a pas répondu.\nVeuillez réessayer.")
                 return
             }
-            self.data = recipe
-            guard let hitsIndex = recipe.to, !hitsIndex.isMultiple(of: 0) else {
-                return
-            }
-            while self.recipeList.count < hitsIndex {
-                for hit in recipe.hits! {
-                    self.recipeList.append(hit.recipe!)
-                }
-            }
+            self.recipeList = hits.compactMap {$0.recipe}
+            print(self.recipeList)
+            
             self.delegate?.updateView()
         }
     }

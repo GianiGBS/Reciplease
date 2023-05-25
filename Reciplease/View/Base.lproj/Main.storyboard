@@ -209,7 +209,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="searchForRecipeButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="c2p-Yf-WMe"/>
-                                    <segue destination="D1z-or-mB9" kind="show" id="IvI-h2-5lk"/>
+                                    <segue destination="D1z-or-mB9" kind="show" identifier="segueToRecipes" id="IvI-h2-5lk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -243,7 +243,7 @@
             </objects>
             <point key="canvasLocation" x="183.75" y="-3.1690140845070425"/>
         </scene>
-        <!--Recipe-->
+        <!--Result-->
         <scene sceneID="V7W-et-vIC">
             <objects>
                 <tableViewController id="D1z-or-mB9" customClass="ListTableViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -318,11 +318,11 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="D1z-or-mB9" id="akd-Gc-Uyk"/>
-                            <outlet property="delegate" destination="D1z-or-mB9" id="aET-jF-HVQ"/>
+                            <outlet property="dataSource" destination="D1z-or-mB9" id="Pf8-AW-W6G"/>
+                            <outlet property="delegate" destination="D1z-or-mB9" id="ebQ-4h-PH5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recipe" id="hQe-iD-5V9"/>
+                    <navigationItem key="navigationItem" title="Result" id="hQe-iD-5V9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaI-n1-tkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

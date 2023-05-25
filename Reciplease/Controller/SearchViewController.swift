@@ -12,25 +12,29 @@ class SearchViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var searchForRecipeButton: UIButton!
 
     // MARK: - Properties
+    private let segueIdentifier = "segueToRecipes"
     static var cellIndentifier = "IngredientCell"
     var ingredientSearchList : [String] = []
-    let recipeManager = RecipeManager()
-    let tableViewC = ListTableViewController()
+    var recipeTableVC = ListTableViewController()
 
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-        recipeManager.delegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let tableVC = segue.destination as? ListTableViewController {
+                tableVC.ingredients = self.ingredientSearchList
+            }
+        
     }
 
     // MARK: - Actions
@@ -48,50 +52,33 @@ class SearchViewController: UIViewController {
         tableView.reloadData()
     }
     @IBAction func searchForRecipeButtonTapped() {
-        ingredientForSearchShouldReturn()
-        
+//        toggleActivityIndicator(shown: true)
+       ingredientForSearchShouldReturn()
     }
+    
     // MARK: - Methods
     func ingredientForSearchShouldReturn() {
         if !ingredientSearchList.isEmpty {
-            recipeManager.getData(ingredientToFound: ingredientSearchList)
+            recipeTableVC.ingredients = self.ingredientSearchList
+//            recipeManager.getData(ingredientToFound: ingredientSearchList)
         } else {
         self.presentAlert(title: "Entrée vide",
                           message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
             
         }
     }
-}
-// MARK: - Delegate Pattern
-extension SearchViewController: ViewDelegate {
-    func updateView() {
-        guard let data = recipeManager.data?.hits, !data.isEmpty else {
-            return self.presentAlert(title: "Erreur", message: "Aucune données.")
-    }
-        print(data)
-        // Afficher la tableview de recette
-    }
-    
-    func toggleActivityIndicator(shown: Bool) {
-    }
-    
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
-    
-    
 }
+// MARK: - UITextFieldDelegate
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-}
-// MARK: - UISearchBar - Delegate
-extension SearchViewController: UISearchBarDelegate {
-    
 }
 // MARK: - UITableView - DataSource
 extension SearchViewController: UITableViewDataSource {

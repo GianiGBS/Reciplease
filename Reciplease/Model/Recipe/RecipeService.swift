@@ -44,10 +44,10 @@ class RecipeService {
                 callback(false, nil)
                 return
             }
-            print(responseJSON)
-                let recipe = responseJSON
-            callback(true, recipe)
-
+//            print(responseJSON)
+                let welcome = responseJSON
+            callback(true, welcome)
+                print(welcome)
             }
         }
         task?.resume()

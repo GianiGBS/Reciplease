@@ -103,10 +103,10 @@
 				C2BA639329E5B5CD0052484C /* AppDelegate.swift */,
 				C2BA639529E5B5CD0052484C /* SceneDelegate.swift */,
 				C2BA63A429E5B5CE0052484C /* Info.plist */,
-				C2BA63AC29E5B7740052484C /* Model */,
-				C2BA63AA29E5B7330052484C /* View */,
-				C2BA63AB29E5B73F0052484C /* Controller */,
 				C2BA63C329F02AE60052484C /* CoreData */,
+				C2BA63AC29E5B7740052484C /* Model */,
+				C2BA63AB29E5B73F0052484C /* Controller */,
+				C2BA63AA29E5B7330052484C /* View */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
