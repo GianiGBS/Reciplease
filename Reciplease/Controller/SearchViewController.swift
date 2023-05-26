@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     private let segueIdentifier = "segueToRecipes"
     static var cellIndentifier = "IngredientCell"
     var ingredientSearchList : [String] = []
-    var recipeTableVC = ListTableViewController()
+    private let recipeTableVC = ListTableViewController()
 
     // MARK: - Navigation
     override func viewDidLoad() {
@@ -64,8 +64,8 @@ class SearchViewController: UIViewController {
         } else {
         self.presentAlert(title: "Entrée vide",
                           message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
-            
         }
+        performSegue(withIdentifier: segueIdentifier, sender: self)
     }
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -82,14 +82,16 @@ extension SearchViewController: UITextFieldDelegate {
 }
 // MARK: - UITableView - DataSource
 extension SearchViewController: UITableViewDataSource {
+    // MARK: Number of Sections
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    // MARK: Number of Rows in Sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         ingredientSearchList.count
     }
-    
+    // MARK: Cell for Row At
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchViewController.cellIndentifier, for: indexPath)
 
@@ -99,11 +101,10 @@ extension SearchViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
 // MARK: - UITableView - Delegate
 extension SearchViewController: UITableViewDelegate {
+    // MARK: Editing Style
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             ingredientSearchList.remove(at: indexPath.row)

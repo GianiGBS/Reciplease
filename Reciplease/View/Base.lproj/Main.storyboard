@@ -209,7 +209,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="searchForRecipeButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="c2p-Yf-WMe"/>
-                                    <segue destination="D1z-or-mB9" kind="show" identifier="segueToRecipes" id="IvI-h2-5lk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -237,6 +236,7 @@
                         <outlet property="ingredientTextField" destination="1Lh-k6-roM" id="pd4-eP-OL3"/>
                         <outlet property="searchForRecipeButton" destination="wdl-cx-hCB" id="rE5-lV-NPn"/>
                         <outlet property="tableView" destination="zF3-8a-kbs" id="i8L-Nw-caZ"/>
+                        <segue destination="D1z-or-mB9" kind="show" identifier="segueToRecipes" id="9Hk-Gp-zbl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -315,7 +315,6 @@
                                     <outlet property="backgroundImage" destination="ofX-ym-Adh" id="PVW-wV-O0k"/>
                                     <outlet property="subtitleLabel" destination="noV-tx-3rV" id="dTQ-zE-zBt"/>
                                     <outlet property="titleLabel" destination="aNS-AQ-Gop" id="isv-p0-hRx"/>
-                                    <segue destination="IeC-PN-qhr" kind="show" id="cVc-Q6-XdU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -325,6 +324,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Result" id="hQe-iD-5V9"/>
+                    <connections>
+                        <segue destination="IeC-PN-qhr" kind="show" identifier="segueToDetail" id="opJ-jJ-3aS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaI-n1-tkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -467,7 +469,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IvI-h2-5lk"/>
+        <segue reference="9Hk-Gp-zbl"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="capsule.portrait.fill" catalog="system" width="108" height="128"/>

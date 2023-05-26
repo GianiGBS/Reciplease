@@ -16,22 +16,32 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var favButton: UIButton!
 
     // MARK: - Properties
-
+    var selectedRecipe: Recipe?
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateView(recipe: selectedRecipe)
         // Do any additional setup after loading the view.
     }
     // MARK: - Actions
     @IBAction func favButtonTapped(_ sender: Any) {
-        
+//        TODO: Save CoreData et Desing fill
     }
     @IBAction func getDirectionsTapped(_ sender: Any) {
         
     }
     // MARK: - Methods
-    
+    func updateView(recipe: Recipe?) {
+        guard let recipe = recipe,
+              let imageUrl = recipe.image,
+              let title = recipe.label,
+              let info = recipe.ingredientLines?.joined(separator: "\n -")
+        else { return }
+        
+        recipeImage.load(url: URL(string: imageUrl)!)
+        recipeTtile.text = title
+        ingredientsList.text = " -" + info
+    }
 }
 
 // MARK: - Download image from URL
