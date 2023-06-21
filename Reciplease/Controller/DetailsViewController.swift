@@ -17,20 +17,27 @@ class DetailsViewController: UIViewController {
 
     // MARK: - Properties
     var selectedRecipe: Recipe?
+    private let coreDataManager = CoreDataManager()
+    
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView(recipe: selectedRecipe)
+        
         // Do any additional setup after loading the view.
     }
     // MARK: - Actions
     @IBAction func favButtonTapped(_ sender: Any) {
 //        TODO: Save CoreData et Desing fill
+        save(recipe: selectedRecipe)
+        self.favButton.isSelected = true
+        
     }
     @IBAction func getDirectionsTapped(_ sender: Any) {
         
     }
     // MARK: - Methods
+    
     func updateView(recipe: Recipe?) {
         guard let recipe = recipe,
               let imageUrl = recipe.image,
@@ -41,6 +48,22 @@ class DetailsViewController: UIViewController {
         recipeImage.load(url: URL(string: imageUrl)!)
         recipeTtile.text = title
         ingredientsList.text = " -" + info
+    }
+    private func save(recipe: Recipe?) {
+        guard let uri = recipe?.uri,
+              let label = recipe?.label,
+              let image = recipe?.image,
+              let source = recipe?.source,
+              let url = recipe?.url,
+              let ingredientLines = recipe?.ingredientLines?.joined(separator: "\n -")
+        else { return }
+        coreDataManager.addRecipes(uri: uri,
+                                   label: label,
+                                   image: image,
+                                   source: source,
+                                   url: url,
+                                   ingredientLines: ingredientLines) { 
+        }
     }
 }
 

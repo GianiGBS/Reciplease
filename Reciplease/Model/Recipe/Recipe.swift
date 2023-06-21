@@ -52,71 +52,19 @@ struct Recipe: Decodable {
     let uri: String?
     let label: String?
     let image: String?
-    let images: Images?
+//    let images: Images?
     let source: String?
     let url: String?
-    let shareAs: String?
-    let yield: Int?
-    let dietLabels, healthLabels, cautions, ingredientLines: [String]?
-    let ingredients: [Ingredient]?
-    let calories, totalWeight: Double?
-    let totalTime: Int?
-    let cuisineType, mealType, dishType: [String]?
-    let totalNutrients, totalDaily: [String: Total]?
-    let digest: [Digest]?
-}
-
-// MARK: - Digest
-struct Digest: Decodable {
-    let label, tag: String?
-    let schemaOrgTag: String?
-    let total: Double?
-    let hasRDI: Bool?
-    let daily: Double?
-    let unit: String?
-    let sub: [Digest]?
-}
-
-// MARK: - Images
-struct Images: Decodable {
-    let thumbnail, small, regular, large: Large?
-
-    enum CodingKeys: String, CodingKey {
-        case thumbnail = "THUMBNAIL"
-        case small = "SMALL"
-        case regular = "REGULAR"
-        case large = "LARGE"
-    }
+//    let yield: Int?
+    let ingredientLines: [String]?
+//    let calories: Double?
+//    let totalTime: Int?
 }
 
 // MARK: - Large
 struct Large: Decodable {
     let url: String?
     let width, height: Int?
-}
-
-// MARK: - Ingredient
-struct Ingredient: Decodable {
-    let text: String?
-    let quantity: Double?
-    let measure: String?
-    let food: String?
-    let weight: Double?
-    let foodCategory, foodID: String?
-    let image: String?
-
-    enum CodingKeys: String, CodingKey {
-        case text, quantity, measure, food, weight, foodCategory
-        case foodID = "foodId"
-        case image
-    }
-}
-
-// MARK: - Total
-struct Total: Decodable {
-    let label: String?
-    let quantity: Double?
-    let unit: String?
 }
 
 // MARK: - WelcomeLinks

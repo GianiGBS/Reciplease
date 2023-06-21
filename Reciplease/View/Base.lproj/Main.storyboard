@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n17-JZ-b0t">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,7 +13,7 @@
         <scene sceneID="wcI-BT-Ke8">
             <objects>
                 <tabBarController id="n17-JZ-b0t" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rES-gy-PXh">
+                    <tabBar key="tabBar" contentMode="scaleToFill" restorationIdentifier="TabBar" insetsLayoutMarginsFromSafeArea="NO" id="rES-gy-PXh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,7 +33,7 @@
         <!--Search-->
         <scene sceneID="SV2-0K-Wco">
             <objects>
-                <navigationController id="LoE-Ax-Az4" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SearchNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LoE-Ax-Az4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="Taf-wA-g75"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aDr-iC-jk9">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -395,7 +395,9 @@
                                         <rect key="frame" x="261.5" y="8" width="50.5" height="34"/>
                                         <color key="tintColor" red="0.84705877299999999" green="0.44313728810000003" blue="0.2588235438" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="heart" catalog="system" variableValue="0.80000000000000004"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="favButtonTapped:" destination="IeC-PN-qhr" eventType="touchUpInside" id="hRh-ck-ddc"/>
                                         </connections>
@@ -448,7 +450,7 @@
         <!--Favorite-->
         <scene sceneID="usy-aU-PhL">
             <objects>
-                <navigationController id="LfX-r2-3p2" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FavNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LfX-r2-3p2" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" id="lOK-Q0-YLX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mwf-1f-qhw">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -460,7 +462,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="D1z-or-mB9" kind="relationship" relationship="rootViewController" id="hOH-96-u7b"/>
+                        <segue destination="D1z-or-mB9" kind="relationship" relationship="rootViewController" id="ZrZ-De-nkP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LCR-Yu-Wgy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -469,7 +471,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9Hk-Gp-zbl"/>
+        <segue reference="ZrZ-De-nkP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="capsule.portrait.fill" catalog="system" width="108" height="128"/>

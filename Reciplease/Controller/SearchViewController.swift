@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     private let segueIdentifier = "segueToRecipes"
     static var cellIndentifier = "IngredientCell"
     var ingredientSearchList : [String] = []
-    private let recipeTableVC = ListTableViewController()
+    let recipeTableVC = ListTableViewController(isCoreData: false)
 
     // MARK: - Navigation
     override func viewDidLoad() {
@@ -33,6 +33,7 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if let tableVC = segue.destination as? ListTableViewController {
                 tableVC.ingredients = self.ingredientSearchList
+                
             }
         
     }

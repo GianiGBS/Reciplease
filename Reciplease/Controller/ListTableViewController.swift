@@ -16,13 +16,14 @@ class ListTableViewController: UITableViewController {
     let cellIndentifier = "RecipeCell"
     var selectedRow = 0
     let recipeModel = RecipeManager()
-    private let recipeDetailVC = DetailsViewController()
+    let coreDataManager = CoreDataManager()
+    let isCoreData: Bool
 
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
         recipeModel.delegate = self
-        recipeModel.getData(ingredientToFound: ingredients)
+        start()
         tableView.rowHeight = 200
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -33,9 +34,26 @@ class ListTableViewController: UITableViewController {
             detailVC.selectedRecipe = recipes[self.selectedRow]
         }
     }
-
+    
+    // MARK: - Init
+    init(isCoreData: Bool) {
+        self.isCoreData = isCoreData
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Methods
+    func start(){
+        if isCoreData {
+            recipes = coreDataManager.getRecipes()
+        } else {
+            recipeModel.getData(ingredientToFound: ingredients)
+        }
+    }
+    
     // MARK: - Table view data source
-
     // MARK: Number of Sections
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

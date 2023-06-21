@@ -13,6 +13,7 @@ class RecipeManager {
     // MARK: - Properties
 //    var data: Welcome?
     public private (set) var recipeList: [Recipe] = []
+    
     let recipeService = RecipeService.shared
     public weak var delegate: ViewDelegate?
 

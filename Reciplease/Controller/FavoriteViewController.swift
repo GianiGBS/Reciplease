@@ -9,15 +9,29 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     // MARK: - Properties
-    public var favRecipes: [Recipe] = []
+    private let segueIdentifier = ""
+    private let coreDataManager = CoreDataManager()
+    private let recipeTableVC = ListTableViewController(isCoreData: true)
+    
+    private var favRecipes: [Recipe] = []
+    
     
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        getRecipes()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let tableVC = segue.destination as? ListTableViewController {
+            tableVC.recipes = self.favRecipes
+        }
     }
     // MARK: - Methods
-    
+    private func getRecipes() {
+        self.favRecipes = coreDataManager.getRecipes()
+    }
+    private func deleteRecipes(){
+        
+    }
 
 }
