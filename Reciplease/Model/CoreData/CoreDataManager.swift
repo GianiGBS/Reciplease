@@ -11,10 +11,10 @@ import CoreData
 class CoreDataManager { //    TODO: covertir obj RecipeCD en Recipe
     
     // MARK: - Properties
-    var coreDatarecipeList: [CoreDataRecipe] = []
     var recipeList: [Recipe] = []
     
     private let coreDataStack: CoreDataStack
+    private let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
     public weak var delegate: ViewDelegate?
     
     // MARK: - Init
@@ -24,7 +24,7 @@ class CoreDataManager { //    TODO: covertir obj RecipeCD en Recipe
     // MARK: - Methods
     // MARK: Get a recipe
     func getRecipes() -> [Recipe] {
-        let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
+//        let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
         guard let coreDataRecipes = try? coreDataStack.viewContext.fetch(request) else {
             return []
         }
@@ -49,28 +49,53 @@ class CoreDataManager { //    TODO: covertir obj RecipeCD en Recipe
     }
 
     // MARK: Save a recipe in CoreData
-    func addRecipes(uri: String, label: String, image: String, source: String, url: String, ingredientLines: String, completion: () -> Void) {
+    func addRecipesToFav(recipe: Recipe) {
         let coreDataRecipe = CoreDataRecipe(context: coreDataStack.viewContext)
-        coreDataRecipe.uri = uri
-        coreDataRecipe.label = label
-        coreDataRecipe.image = image
-        coreDataRecipe.source = source
-        coreDataRecipe.url = url
-        coreDataRecipe.ingredientLines = ingredientLines
+        coreDataRecipe.uri = recipe.uri
+        coreDataRecipe.label = recipe.label
+        coreDataRecipe.image = recipe.image
+        coreDataRecipe.source = recipe.source
+        coreDataRecipe.url = recipe.url
+        coreDataRecipe.ingredientLines = recipe.ingredientLines?.joined(separator: ",")
         do {
             try coreDataStack.viewContext.save()
-            completion()
+//            completion()
         } catch {
-//            self.delegate?.presentAlert(title: "Echec de la sauvegarde",
-//                                        message: "Nous n'avons pas réussi à sauvegarde votre recette.\n Veuillez réessayer.")
             print("We are unable to save \(coreDataRecipe)")
         }
-        
-        
+    }
+    // MARK: Check existing recipe with url id
+    func checkIfItemExist(url: String) -> Bool {
+//        let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
+        request.predicate = NSPredicate(format: "url == %@", url)
+        guard let count = try? coreDataStack.viewContext.count(for: request) else {
+            return false
+        }
+        return count > 0
     }
     // MARK: Delete a recipe
-    func deleteRecipes() {
-        
+    func deleteOneRecipes(url: String) {
+//        let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
+        request.predicate = NSPredicate(format: "url == %@", url)
+        if let favoriteRecipes = try? coreDataStack.viewContext.fetch(request) {
+            for recipe in favoriteRecipes {
+                coreDataStack.viewContext.delete(recipe)
+            }
+        }
+        do { try coreDataStack.viewContext.save() }
+        catch { print("We are unable to save ") }
+    }
+    // MARK: Delete all recipe
+    func deleteAllRecipes() {
+//        let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
+        request.predicate = NSPredicate(value: true)
+        if let favoriteRecipes = try? coreDataStack.viewContext.fetch(request) {
+            for recipe in favoriteRecipes {
+                coreDataStack.viewContext.delete(recipe)
+            }
+        }
+        do { try coreDataStack.viewContext.save() }
+        catch { print("We are unable to save ")}
     }
 
 }

@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     private let segueIdentifier = "segueToRecipes"
     static var cellIndentifier = "IngredientCell"
     var ingredientSearchList : [String] = []
-    let recipeTableVC = ListTableViewController(isCoreData: false)
+//    let recipeTableVC = ListTableViewController()
 
     // MARK: - Navigation
     override func viewDidLoad() {
@@ -31,11 +31,13 @@ class SearchViewController: UIViewController {
         tableView.reloadData()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueIdentifier {
             if let tableVC = segue.destination as? ListTableViewController {
-                tableVC.ingredients = self.ingredientSearchList
+                tableVC.isCoreData = false
+                tableVC.ingredients = ingredientSearchList
                 
             }
-        
+        }
     }
 
     // MARK: - Actions
@@ -59,14 +61,12 @@ class SearchViewController: UIViewController {
     
     // MARK: - Methods
     func ingredientForSearchShouldReturn() {
-        if !ingredientSearchList.isEmpty {
-            recipeTableVC.ingredients = self.ingredientSearchList
-//            recipeManager.getData(ingredientToFound: ingredientSearchList)
+        if ingredientSearchList.isEmpty {
+            self.presentAlert(title: "Entrée vide",
+                              message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
         } else {
-        self.presentAlert(title: "Entrée vide",
-                          message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
+            performSegue(withIdentifier: segueIdentifier, sender: self)
         }
-        performSegue(withIdentifier: segueIdentifier, sender: self)
     }
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -74,6 +74,7 @@ class SearchViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
 }
+
 // MARK: - UITextFieldDelegate
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -23,51 +23,61 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView(recipe: selectedRecipe)
-        
-        // Do any additional setup after loading the view.
     }
     // MARK: - Actions
     @IBAction func favButtonTapped(_ sender: Any) {
-//        TODO: Save CoreData et Desing fill
         save(recipe: selectedRecipe)
-        self.favButton.isSelected = true
         
     }
     @IBAction func getDirectionsTapped(_ sender: Any) {
         
     }
-    // MARK: - Methods
     
+    // MARK: - Methods
+    /// Update View with recipe's details
     func updateView(recipe: Recipe?) {
         guard let recipe = recipe,
+              let url = recipe.url,
               let imageUrl = recipe.image,
               let title = recipe.label,
               let info = recipe.ingredientLines?.joined(separator: "\n -")
+                
         else { return }
         
         recipeImage.load(url: URL(string: imageUrl)!)
         recipeTtile.text = title
         ingredientsList.text = " -" + info
+        if coreDataManager.checkIfItemExist(url: url) {
+            favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            favButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
     }
+    /// Checking fav button
+    func checkFavButton() {
+        if let recipeUrl = selectedRecipe?.url, coreDataManager.checkIfItemExist(url: recipeUrl) {
+            favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            favButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
+    // TODO: Verifier le separateur de la liste d'ingredient
+    /// Save selected recipe in CoreData
     private func save(recipe: Recipe?) {
-        guard let uri = recipe?.uri,
-              let label = recipe?.label,
-              let image = recipe?.image,
-              let source = recipe?.source,
-              let url = recipe?.url,
-              let ingredientLines = recipe?.ingredientLines?.joined(separator: "\n -")
-        else { return }
-        coreDataManager.addRecipes(uri: uri,
-                                   label: label,
-                                   image: image,
-                                   source: source,
-                                   url: url,
-                                   ingredientLines: ingredientLines) { 
+        if let recipeUrl = selectedRecipe?.url, let recipe = selectedRecipe {
+            if coreDataManager.checkIfItemExist(url: recipeUrl) {
+                coreDataManager.deleteOneRecipes(url: recipeUrl)
+                favButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            } else {
+                coreDataManager.addRecipesToFav(recipe: recipe)
+                favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            }
         }
     }
 }
 
-// MARK: - Download image from URL
+// MARK: - Extension
+/// Download image from URL
 extension UIImageView {
     func load(url: URL) {
         DispatchQueue.global().async { [weak self] in

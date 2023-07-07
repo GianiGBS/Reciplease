@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C21261822A26588A008AD770 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21261812A26588A008AD770 /* CoreDataStack.swift */; };
+		C21B2C402A4F4DF500CC7E25 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21B2C3F2A4F4DF500CC7E25 /* ContainerViewController.swift */; };
+		C21B2C452A57374D00CC7E25 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C21B2C442A57374D00CC7E25 /* Alamofire */; };
+		C22222AE2A30C9FD005D9535 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22222AD2A30C9FD005D9535 /* CoreDataManager.swift */; };
+		C2576F3C2A351B15006ECE33 /* CoreDataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */; };
+		C299CA072A2E5B1600437BFE /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C299CA052A2E5B1600437BFE /* Reciplease.xcdatamodeld */; };
 		C2BA639429E5B5CD0052484C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA639329E5B5CD0052484C /* AppDelegate.swift */; };
 		C2BA639629E5B5CD0052484C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA639529E5B5CD0052484C /* SceneDelegate.swift */; };
 		C2BA639B29E5B5CD0052484C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2BA639929E5B5CD0052484C /* Main.storyboard */; };
-		C2BA639E29E5B5CD0052484C /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2BA639C29E5B5CD0052484C /* Reciplease.xcdatamodeld */; };
 		C2BA63A029E5B5CE0052484C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2BA639F29E5B5CE0052484C /* Assets.xcassets */; };
 		C2BA63A329E5B5CE0052484C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2BA63A129E5B5CE0052484C /* LaunchScreen.storyboard */; };
 		C2BA63B429E5B95C0052484C /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA63B329E5B95C0052484C /* RecipleaseTests.swift */; };
@@ -37,11 +42,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C21261812A26588A008AD770 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		C21B2C3F2A4F4DF500CC7E25 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		C22222AD2A30C9FD005D9535 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecipe.swift; sourceTree = "<group>"; };
+		C299CA062A2E5B1600437BFE /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		C2BA639029E5B5CD0052484C /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2BA639329E5B5CD0052484C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2BA639529E5B5CD0052484C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C2BA639A29E5B5CD0052484C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C2BA639D29E5B5CD0052484C /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		C2BA639F29E5B5CE0052484C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2BA63A229E5B5CE0052484C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2BA63A429E5B5CE0052484C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C21B2C452A57374D00CC7E25 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +113,6 @@
 				C2BA639329E5B5CD0052484C /* AppDelegate.swift */,
 				C2BA639529E5B5CD0052484C /* SceneDelegate.swift */,
 				C2BA63A429E5B5CE0052484C /* Info.plist */,
-				C2BA63C329F02AE60052484C /* CoreData */,
 				C2BA63AC29E5B7740052484C /* Model */,
 				C2BA63AA29E5B7330052484C /* View */,
 				C2BA63AB29E5B73F0052484C /* Controller */,
@@ -126,9 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				C2BA63BA29E625AE0052484C /* SearchViewController.swift */,
+				C21B2C3F2A4F4DF500CC7E25 /* ContainerViewController.swift */,
+				C2BA63BC29E625C90052484C /* FavoriteViewController.swift */,
 				C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */,
 				C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */,
-				C2BA63BC29E625C90052484C /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				C2BB2A672A0955510054F369 /* NetWorkManagement.swift */,
+				C2BA63C329F02AE60052484C /* CoreData */,
 				C2BB2A692A09556E0054F369 /* Recipe */,
 			);
 			path = Model;
@@ -153,7 +164,10 @@
 		C2BA63C329F02AE60052484C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				C2BA639C29E5B5CD0052484C /* Reciplease.xcdatamodeld */,
+				C299CA052A2E5B1600437BFE /* Reciplease.xcdatamodeld */,
+				C21261812A26588A008AD770 /* CoreDataStack.swift */,
+				C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */,
+				C22222AD2A30C9FD005D9535 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -185,6 +199,9 @@
 			dependencies = (
 			);
 			name = Reciplease;
+			packageProductDependencies = (
+				C21B2C442A57374D00CC7E25 /* Alamofire */,
+			);
 			productName = Reciplease;
 			productReference = C2BA639029E5B5CD0052484C /* Reciplease.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +252,9 @@
 				Base,
 			);
 			mainGroup = C2BA638729E5B5CD0052484C;
+			packageReferences = (
+				C21B2C432A57374D00CC7E25 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = C2BA639129E5B5CD0052484C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -274,13 +294,17 @@
 				C2BB2A682A0955510054F369 /* NetWorkManagement.swift in Sources */,
 				C2BB2A6B2A0957630054F369 /* RecipeManager.swift in Sources */,
 				C2BB2A742A0EA5950054F369 /* RecipeTableViewCell.swift in Sources */,
-				C2BA639E29E5B5CD0052484C /* Reciplease.xcdatamodeld in Sources */,
 				C2BB2A5829FB2B950054F369 /* Recipe.swift in Sources */,
+				C22222AE2A30C9FD005D9535 /* CoreDataManager.swift in Sources */,
 				C2BB2A722A0D70F50054F369 /* ListTableViewController.swift in Sources */,
+				C21261822A26588A008AD770 /* CoreDataStack.swift in Sources */,
 				C2BB2A662A02B2040054F369 /* RecipeURL.swift in Sources */,
 				C2BA639429E5B5CD0052484C /* AppDelegate.swift in Sources */,
+				C2576F3C2A351B15006ECE33 /* CoreDataRecipe.swift in Sources */,
+				C21B2C402A4F4DF500CC7E25 /* ContainerViewController.swift in Sources */,
 				C2BB2A642A02A42C0054F369 /* RecipeService.swift in Sources */,
 				C2BA63BD29E625C90052484C /* FavoriteViewController.swift in Sources */,
+				C299CA072A2E5B1600437BFE /* Reciplease.xcdatamodeld in Sources */,
 				C2BA639629E5B5CD0052484C /* SceneDelegate.swift in Sources */,
 				C2BB2A702A0C01890054F369 /* DetailsViewController.swift in Sources */,
 			);
@@ -566,13 +590,32 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		C21B2C432A57374D00CC7E25 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C21B2C442A57374D00CC7E25 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C21B2C432A57374D00CC7E25 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* Begin XCVersionGroup section */
-		C2BA639C29E5B5CD0052484C /* Reciplease.xcdatamodeld */ = {
+		C299CA052A2E5B1600437BFE /* Reciplease.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C2BA639D29E5B5CD0052484C /* Reciplease.xcdatamodel */,
+				C299CA062A2E5B1600437BFE /* Reciplease.xcdatamodel */,
 			);
-			currentVersion = C2BA639D29E5B5CD0052484C /* Reciplease.xcdatamodel */;
+			currentVersion = C299CA062A2E5B1600437BFE /* Reciplease.xcdatamodel */;
 			path = Reciplease.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

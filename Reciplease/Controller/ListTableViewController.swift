@@ -16,18 +16,19 @@ class ListTableViewController: UITableViewController {
     let cellIndentifier = "RecipeCell"
     var selectedRow = 0
     let recipeModel = RecipeManager()
-    let coreDataManager = CoreDataManager()
-    let isCoreData: Bool
-
+    let coreDataModel = CoreDataManager()
+    var isCoreData: Bool = false
+    
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-        recipeModel.delegate = self
         start()
+        recipeModel.delegate = self
         tableView.rowHeight = 200
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        start()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailVC = segue.destination as? DetailsViewController {
@@ -36,34 +37,35 @@ class ListTableViewController: UITableViewController {
     }
     
     // MARK: - Init
-    init(isCoreData: Bool) {
-        self.isCoreData = isCoreData
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(isCoreData: Bool) {
+//        self.isCoreData = isCoreData
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     // MARK: - Methods
     func start(){
         if isCoreData {
-            recipes = coreDataManager.getRecipes()
+            recipes = coreDataModel.getRecipes()
         } else {
             recipeModel.getData(ingredientToFound: ingredients)
         }
     }
     
     // MARK: - Table view data source
-    // MARK: Number of Sections
+    /// MARK: Number of Sections
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    // MARK: Number of Rows in Sections
+    /// MARK: Number of Rows in Sections
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }
-    // MARK: Cell for Row At
+    /// MARK: Cell for Row At
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let recipecell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath) as? RecipeTableViewCell
         else { return UITableViewCell() }
@@ -79,7 +81,7 @@ class ListTableViewController: UITableViewController {
         
         return recipecell
     }
-    // MARK: Did Select Row At
+    /// MARK: Did Select Row At
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedRow = indexPath.row
         performSegue(withIdentifier: segueIdentifier, sender: self)

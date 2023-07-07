@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 // MARK: - Recipe Search API
 class RecipeService {
@@ -24,6 +25,10 @@ class RecipeService {
     // MARK: - Methods
     func getRecipe(for ingredients: [String], callback: @escaping(Bool, Welcome?) -> Void) {
         
+        // TODO: - Alamofire
+        let foodsParameter = ingredients.joined(separator: ",")
+        AF.request(RecipeAPI.url, method: .get, parameters: foodsParameter)
+                               
         let allURL = RecipeAPI.url + ingredients.joined(separator: ",")
         
         var request = URLRequest(url: URL(string: allURL)!)
