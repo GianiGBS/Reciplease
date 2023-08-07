@@ -8,24 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		C21261822A26588A008AD770 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21261812A26588A008AD770 /* CoreDataStack.swift */; };
-		C21B2C402A4F4DF500CC7E25 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21B2C3F2A4F4DF500CC7E25 /* ContainerViewController.swift */; };
 		C21B2C452A57374D00CC7E25 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C21B2C442A57374D00CC7E25 /* Alamofire */; };
 		C22222AE2A30C9FD005D9535 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22222AD2A30C9FD005D9535 /* CoreDataManager.swift */; };
 		C2576F3C2A351B15006ECE33 /* CoreDataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */; };
+		C262DCC22A68155000AE7DAD /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCC12A68155000AE7DAD /* MockURLProtocol.swift */; };
+		C262DCC62A6FFCA900AE7DAD /* Recipe.json in Resources */ = {isa = PBXBuildFile; fileRef = C262DCC52A6FFCA900AE7DAD /* Recipe.json */; };
+		C262DCCA2A70049C00AE7DAD /* EdamamServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */; };
+		C262DCCC2A7077A400AE7DAD /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCCB2A7077A400AE7DAD /* CoreDataTests.swift */; };
+		C262DCCE2A708ED400AE7DAD /* CoreDataStackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCCD2A708ED400AE7DAD /* CoreDataStackTest.swift */; };
+		C262DCD22A71D28400AE7DAD /* MockEdamamServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCD12A71D28400AE7DAD /* MockEdamamServiceTest.swift */; };
 		C299CA072A2E5B1600437BFE /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C299CA052A2E5B1600437BFE /* Reciplease.xcdatamodeld */; };
 		C2BA639429E5B5CD0052484C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA639329E5B5CD0052484C /* AppDelegate.swift */; };
 		C2BA639629E5B5CD0052484C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA639529E5B5CD0052484C /* SceneDelegate.swift */; };
 		C2BA639B29E5B5CD0052484C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2BA639929E5B5CD0052484C /* Main.storyboard */; };
 		C2BA63A029E5B5CE0052484C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2BA639F29E5B5CE0052484C /* Assets.xcassets */; };
 		C2BA63A329E5B5CE0052484C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2BA63A129E5B5CE0052484C /* LaunchScreen.storyboard */; };
-		C2BA63B429E5B95C0052484C /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA63B329E5B95C0052484C /* RecipleaseTests.swift */; };
 		C2BA63BB29E625AE0052484C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA63BA29E625AE0052484C /* SearchViewController.swift */; };
 		C2BA63BD29E625C90052484C /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA63BC29E625C90052484C /* FavoriteViewController.swift */; };
 		C2BB2A5829FB2B950054F369 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A5729FB2B950054F369 /* Recipe.swift */; };
-		C2BB2A642A02A42C0054F369 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A632A02A42C0054F369 /* RecipeService.swift */; };
-		C2BB2A662A02B2040054F369 /* RecipeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A652A02B2040054F369 /* RecipeURL.swift */; };
+		C2BB2A642A02A42C0054F369 /* EdamamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A632A02A42C0054F369 /* EdamamService.swift */; };
+		C2BB2A662A02B2040054F369 /* EdamamURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A652A02B2040054F369 /* EdamamURL.swift */; };
 		C2BB2A682A0955510054F369 /* NetWorkManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A672A0955510054F369 /* NetWorkManagement.swift */; };
-		C2BB2A6B2A0957630054F369 /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A6A2A0957630054F369 /* RecipeManager.swift */; };
+		C2BB2A6B2A0957630054F369 /* EdamamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A6A2A0957630054F369 /* EdamamManager.swift */; };
 		C2BB2A702A0C01890054F369 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */; };
 		C2BB2A722A0D70F50054F369 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */; };
 		C2BB2A742A0EA5950054F369 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A732A0EA5950054F369 /* RecipeTableViewCell.swift */; };
@@ -43,9 +47,14 @@
 
 /* Begin PBXFileReference section */
 		C21261812A26588A008AD770 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		C21B2C3F2A4F4DF500CC7E25 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		C22222AD2A30C9FD005D9535 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecipe.swift; sourceTree = "<group>"; };
+		C262DCC12A68155000AE7DAD /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		C262DCC52A6FFCA900AE7DAD /* Recipe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipe.json; sourceTree = "<group>"; };
+		C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamServiceTest.swift; sourceTree = "<group>"; };
+		C262DCCB2A7077A400AE7DAD /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		C262DCCD2A708ED400AE7DAD /* CoreDataStackTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTest.swift; sourceTree = "<group>"; };
+		C262DCD12A71D28400AE7DAD /* MockEdamamServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEdamamServiceTest.swift; sourceTree = "<group>"; };
 		C299CA062A2E5B1600437BFE /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		C2BA639029E5B5CD0052484C /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2BA639329E5B5CD0052484C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,14 +64,13 @@
 		C2BA63A229E5B5CE0052484C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2BA63A429E5B5CE0052484C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2BA63B129E5B95C0052484C /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2BA63B329E5B95C0052484C /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		C2BA63BA29E625AE0052484C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C2BA63BC29E625C90052484C /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		C2BB2A5729FB2B950054F369 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		C2BB2A632A02A42C0054F369 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
-		C2BB2A652A02B2040054F369 /* RecipeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeURL.swift; sourceTree = "<group>"; };
+		C2BB2A632A02A42C0054F369 /* EdamamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamService.swift; sourceTree = "<group>"; };
+		C2BB2A652A02B2040054F369 /* EdamamURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamURL.swift; sourceTree = "<group>"; };
 		C2BB2A672A0955510054F369 /* NetWorkManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkManagement.swift; sourceTree = "<group>"; };
-		C2BB2A6A2A0957630054F369 /* RecipeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeManager.swift; sourceTree = "<group>"; };
+		C2BB2A6A2A0957630054F369 /* EdamamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamManager.swift; sourceTree = "<group>"; };
 		C2BB2A6C2A0A92F00054F369 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +96,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C262DCC32A6FF99100AE7DAD /* CoreDataTests */ = {
+			isa = PBXGroup;
+			children = (
+				C262DCCD2A708ED400AE7DAD /* CoreDataStackTest.swift */,
+				C262DCCB2A7077A400AE7DAD /* CoreDataTests.swift */,
+			);
+			path = CoreDataTests;
+			sourceTree = "<group>";
+		};
+		C262DCC42A6FF9E100AE7DAD /* EdamamTest */ = {
+			isa = PBXGroup;
+			children = (
+				C262DCC52A6FFCA900AE7DAD /* Recipe.json */,
+				C262DCD12A71D28400AE7DAD /* MockEdamamServiceTest.swift */,
+				C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */,
+			);
+			path = EdamamTest;
+			sourceTree = "<group>";
+		};
 		C2BA638729E5B5CD0052484C = {
 			isa = PBXGroup;
 			children = (
@@ -135,10 +162,9 @@
 			isa = PBXGroup;
 			children = (
 				C2BA63BA29E625AE0052484C /* SearchViewController.swift */,
-				C21B2C3F2A4F4DF500CC7E25 /* ContainerViewController.swift */,
-				C2BA63BC29E625C90052484C /* FavoriteViewController.swift */,
 				C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */,
 				C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */,
+				C2BA63BC29E625C90052484C /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,7 +174,7 @@
 			children = (
 				C2BB2A672A0955510054F369 /* NetWorkManagement.swift */,
 				C2BA63C329F02AE60052484C /* CoreData */,
-				C2BB2A692A09556E0054F369 /* Recipe */,
+				C2BB2A692A09556E0054F369 /* Edamam */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,7 +182,9 @@
 		C2BA63B229E5B95C0052484C /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				C2BA63B329E5B95C0052484C /* RecipleaseTests.swift */,
+				C262DCC12A68155000AE7DAD /* MockURLProtocol.swift */,
+				C262DCC42A6FF9E100AE7DAD /* EdamamTest */,
+				C262DCC32A6FF99100AE7DAD /* CoreDataTests */,
 			);
 			path = RecipleaseTests;
 			sourceTree = "<group>";
@@ -172,15 +200,15 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		C2BB2A692A09556E0054F369 /* Recipe */ = {
+		C2BB2A692A09556E0054F369 /* Edamam */ = {
 			isa = PBXGroup;
 			children = (
 				C2BB2A5729FB2B950054F369 /* Recipe.swift */,
-				C2BB2A632A02A42C0054F369 /* RecipeService.swift */,
-				C2BB2A6A2A0957630054F369 /* RecipeManager.swift */,
-				C2BB2A652A02B2040054F369 /* RecipeURL.swift */,
+				C2BB2A652A02B2040054F369 /* EdamamURL.swift */,
+				C2BB2A632A02A42C0054F369 /* EdamamService.swift */,
+				C2BB2A6A2A0957630054F369 /* EdamamManager.swift */,
 			);
-			path = Recipe;
+			path = Edamam;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C262DCC62A6FFCA900AE7DAD /* Recipe.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,17 +321,16 @@
 			files = (
 				C2BA63BB29E625AE0052484C /* SearchViewController.swift in Sources */,
 				C2BB2A682A0955510054F369 /* NetWorkManagement.swift in Sources */,
-				C2BB2A6B2A0957630054F369 /* RecipeManager.swift in Sources */,
+				C2BB2A6B2A0957630054F369 /* EdamamManager.swift in Sources */,
 				C2BB2A742A0EA5950054F369 /* RecipeTableViewCell.swift in Sources */,
 				C2BB2A5829FB2B950054F369 /* Recipe.swift in Sources */,
 				C22222AE2A30C9FD005D9535 /* CoreDataManager.swift in Sources */,
 				C2BB2A722A0D70F50054F369 /* ListTableViewController.swift in Sources */,
 				C21261822A26588A008AD770 /* CoreDataStack.swift in Sources */,
-				C2BB2A662A02B2040054F369 /* RecipeURL.swift in Sources */,
+				C2BB2A662A02B2040054F369 /* EdamamURL.swift in Sources */,
 				C2BA639429E5B5CD0052484C /* AppDelegate.swift in Sources */,
 				C2576F3C2A351B15006ECE33 /* CoreDataRecipe.swift in Sources */,
-				C21B2C402A4F4DF500CC7E25 /* ContainerViewController.swift in Sources */,
-				C2BB2A642A02A42C0054F369 /* RecipeService.swift in Sources */,
+				C2BB2A642A02A42C0054F369 /* EdamamService.swift in Sources */,
 				C2BA63BD29E625C90052484C /* FavoriteViewController.swift in Sources */,
 				C299CA072A2E5B1600437BFE /* Reciplease.xcdatamodeld in Sources */,
 				C2BA639629E5B5CD0052484C /* SceneDelegate.swift in Sources */,
@@ -314,7 +342,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2BA63B429E5B95C0052484C /* RecipleaseTests.swift in Sources */,
+				C262DCCA2A70049C00AE7DAD /* EdamamServiceTest.swift in Sources */,
+				C262DCC22A68155000AE7DAD /* MockURLProtocol.swift in Sources */,
+				C262DCD22A71D28400AE7DAD /* MockEdamamServiceTest.swift in Sources */,
+				C262DCCC2A7077A400AE7DAD /* CoreDataTests.swift in Sources */,
+				C262DCCE2A708ED400AE7DAD /* CoreDataStackTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

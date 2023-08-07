@@ -17,7 +17,7 @@ class DetailsViewController: UIViewController {
 
     // MARK: - Properties
     var selectedRecipe: Recipe?
-    private let coreDataManager = CoreDataManager()
+    private let coreDataModel = CoreDataManager()
     
     // MARK: - Navigation
     override func viewDidLoad() {
@@ -27,10 +27,18 @@ class DetailsViewController: UIViewController {
     // MARK: - Actions
     @IBAction func favButtonTapped(_ sender: Any) {
         save(recipe: selectedRecipe)
+//    TODO: Reload TableView
         
     }
     @IBAction func getDirectionsTapped(_ sender: Any) {
-        
+        guard let recipe = selectedRecipe,
+              let directionUrl = recipe.url,
+              let url = URL(string: directionUrl)
+        else {
+            presentAlert(title: "Error", message: "Invalide recipe URL.")
+            return
+        }
+        UIApplication.shared.open(url)
     }
     
     // MARK: - Methods
@@ -47,7 +55,7 @@ class DetailsViewController: UIViewController {
         recipeImage.load(url: URL(string: imageUrl)!)
         recipeTtile.text = title
         ingredientsList.text = " -" + info
-        if coreDataManager.checkIfItemExist(url: url) {
+        if coreDataModel.checkIfItemExist(url: url) {
             favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             favButton.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -55,7 +63,7 @@ class DetailsViewController: UIViewController {
     }
     /// Checking fav button
     func checkFavButton() {
-        if let recipeUrl = selectedRecipe?.url, coreDataManager.checkIfItemExist(url: recipeUrl) {
+        if let recipeUrl = selectedRecipe?.url, coreDataModel.checkIfItemExist(url: recipeUrl) {
             favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             favButton.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -65,14 +73,28 @@ class DetailsViewController: UIViewController {
     /// Save selected recipe in CoreData
     private func save(recipe: Recipe?) {
         if let recipeUrl = selectedRecipe?.url, let recipe = selectedRecipe {
-            if coreDataManager.checkIfItemExist(url: recipeUrl) {
-                coreDataManager.deleteOneRecipes(url: recipeUrl)
+            if coreDataModel.checkIfItemExist(url: recipeUrl) {
+                do {
+                    try coreDataModel.deleteOneRecipes(url: recipeUrl)
+                    
+                } catch {
+                    print(error)
+                }
                 favButton.setImage(UIImage(systemName: "heart"), for: .normal)
             } else {
-                coreDataManager.addRecipesToFav(recipe: recipe)
-                favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                do {
+                    try coreDataModel.addRecipesToFav(recipe: recipe)
+                    favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         }
+    }
+    func presentAlert(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
 }
 

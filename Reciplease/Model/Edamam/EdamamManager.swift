@@ -1,5 +1,5 @@
 //
-//  RecipeManager.swift
+//  EdamamManager.swift
 //  Reciplease
 //
 //  Created by Giovanni Gabriel on 08/05/2023.
@@ -8,19 +8,19 @@
 import Foundation
 
 // MARK: - Change
-class RecipeManager {
+class EdamamManager {
 
     // MARK: - Properties
 //    var data: Welcome?
     public private (set) var recipeList: [Recipe] = []
     
-    let recipeService = RecipeService.shared
+    let recipeService = EdamamService(config: EdamamConfig())
     public weak var delegate: ViewDelegate?
 
     // MARK: - Methods
     public func getData(ingredientToFound: [String]) {
         // self.delegate?.toggleActivityIndicator(shown: true)
-        recipeService.getRecipe(for: ingredientToFound ) { success, data in
+        recipeService.getRecipes(for: ingredientToFound ) { success, data in
             // self.delegate?.toggleActivityIndicator(shown: false)
             guard let data = data, success == true, let hits = data.hits else {
                 self.delegate?.presentAlert(title: "Echec de l'appel",

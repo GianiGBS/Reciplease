@@ -7,67 +7,95 @@
 
 import UIKit
 
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UIViewController {
+    
+    // MARK: - Outlets
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var containerView: UIView!
     
     // MARK: - Properties
     var ingredients : [String] = []
     public var recipes: [Recipe] = []
     private let segueIdentifier = "segueToDetail"
-    let cellIndentifier = "RecipeCell"
+    let cellIdentifier = "RecipeCell"
     var selectedRow = 0
-    let recipeModel = RecipeManager()
+    let recipeModel = EdamamManager()
     let coreDataModel = CoreDataManager()
-    var isCoreData: Bool = false
-    
+
+    private var isBookmarksView: Bool {
+        return tabBarController?.selectedIndex == 1
+    }
+
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        setupRecipeModel()
         start()
-        recipeModel.delegate = self
         tableView.rowHeight = 200
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        start()
+        tableView.reloadData()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let detailVC = segue.destination as? DetailsViewController {
-            detailVC.selectedRecipe = recipes[self.selectedRow]
+        if segue.identifier == segueIdentifier {
+            if let detailVC = segue.destination as? DetailsViewController {
+                detailVC.selectedRecipe = recipes[selectedRow]
+            }
         }
     }
     
     // MARK: - Init
-//    init(isCoreData: Bool) {
-//        self.isCoreData = isCoreData
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     // MARK: - Methods
+    func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    func setupRecipeModel() {
+        recipeModel.delegate = self
+    }
+    /// Loading Data
     func start(){
-        if isCoreData {
-            recipes = coreDataModel.getRecipes()
+        if isBookmarksView {
+            print("Is Bookmark")
+            checkRecipes()
         } else {
+            print("Not Bookmark")
+            containerView.isHidden = true
             recipeModel.getData(ingredientToFound: ingredients)
+            tableView.reloadData()
+            
         }
     }
-    
-    // MARK: - Table view data source
+    func checkRecipes() {
+        if coreDataModel.getAllFavRecipes().count > 0 {
+            /// Show ListTableViewController
+            recipes = coreDataModel.recipeList
+            tableView.reloadData()
+            containerView.isHidden = true
+            
+        } else {
+            /// Show Empty FavoriteViewController
+            containerView.isHidden = false
+        }
+    }
+}
+
+// MARK: - UITableView - DataSource
+extension ListTableViewController: UITableViewDataSource {
     /// MARK: Number of Sections
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     /// MARK: Number of Rows in Sections
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }
     /// MARK: Cell for Row At
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let recipecell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath) as? RecipeTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let recipeCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RecipeTableViewCell
         else { return UITableViewCell() }
         
         let recipe = recipes[indexPath.row]
@@ -75,20 +103,23 @@ class ListTableViewController: UITableViewController {
         guard let imageUrl = recipe.image,
               let title = recipe.label,
               let subtitle = recipe.ingredientLines?.joined(separator: ", ")
-        else { return recipecell }
+        else { return recipeCell }
         
-        recipecell.configure(imageUrl: URL(string: imageUrl)!, title: title, subtitle: subtitle)
+        recipeCell.configure(imageUrl: URL(string: imageUrl)!, title: title, subtitle: subtitle)
         
-        return recipecell
-    }
-    /// MARK: Did Select Row At
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedRow = indexPath.row
-        performSegue(withIdentifier: segueIdentifier, sender: self)
+        return recipeCell
     }
 }
 
-// MARK: - Delegate Pattern
+// MARK: Did Select Row At
+extension ListTableViewController: UITableViewDelegate {
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            self.selectedRow = indexPath.row
+            performSegue(withIdentifier: segueIdentifier, sender: self)
+        }
+    }
+
+// MARK: - ViewDelegate
 extension ListTableViewController: ViewDelegate {
 
     func updateView() {
@@ -107,5 +138,4 @@ extension ListTableViewController: ViewDelegate {
 //        convertButton.isUserInteractionEnabled = !shown
 //        activityIndicator.isHidden = !shown
     }
-    
 }

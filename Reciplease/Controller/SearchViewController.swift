@@ -17,14 +17,19 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchForRecipeButton: UIButton!
 
     // MARK: - Properties
-    private let segueIdentifier = "segueToRecipes"
+    private var isBookmarksView: Bool {
+        return tabBarController?.selectedIndex == 0
+    }
+    private let segueIdentifier = "segueToResult"
     static var cellIndentifier = "IngredientCell"
     var ingredientSearchList : [String] = []
-//    let recipeTableVC = ListTableViewController()
 
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        ingredientTextField.delegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,9 +38,7 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
             if let tableVC = segue.destination as? ListTableViewController {
-                tableVC.isCoreData = false
                 tableVC.ingredients = ingredientSearchList
-                
             }
         }
     }
@@ -43,8 +46,9 @@ class SearchViewController: UIViewController {
     // MARK: - Actions
     @IBAction func addButtonTapped() {
         guard let ingredientName = ingredientTextField.text, !ingredientName.isEmpty  else {
-                return self.presentAlert(title: "Entrée vide",
+                presentAlert(title: "Entrée vide",
                                          message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
+            return
         }
         ingredientSearchList.append(ingredientName)
         tableView.reloadData()
@@ -62,7 +66,7 @@ class SearchViewController: UIViewController {
     // MARK: - Methods
     func ingredientForSearchShouldReturn() {
         if ingredientSearchList.isEmpty {
-            self.presentAlert(title: "Entrée vide",
+            presentAlert(title: "Entrée vide",
                               message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
         } else {
             performSegue(withIdentifier: segueIdentifier, sender: self)

@@ -8,15 +8,16 @@
 import Foundation
 import CoreData
 
-final class CoreDataStack {
-    
-    // MARK: - Proprieties
-    
-    private let persistentContainerName = "Reciplease"
+class CoreDataStack {
     
     // MARK: - Singleton
     
     static let sharedInstance = CoreDataStack()
+    
+    // MARK: - Proprieties
+    
+    private let persistentContainerName = "Reciplease"
+    var storeContainer: NSPersistentContainer!
     
     // MARK: - Public
     
