@@ -12,11 +12,10 @@
 		C22222AE2A30C9FD005D9535 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22222AD2A30C9FD005D9535 /* CoreDataManager.swift */; };
 		C2576F3C2A351B15006ECE33 /* CoreDataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */; };
 		C262DCC22A68155000AE7DAD /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCC12A68155000AE7DAD /* MockURLProtocol.swift */; };
-		C262DCC62A6FFCA900AE7DAD /* Recipe.json in Resources */ = {isa = PBXBuildFile; fileRef = C262DCC52A6FFCA900AE7DAD /* Recipe.json */; };
+		C262DCC62A6FFCA900AE7DAD /* Recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = C262DCC52A6FFCA900AE7DAD /* Recipes.json */; };
 		C262DCCA2A70049C00AE7DAD /* EdamamServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */; };
 		C262DCCC2A7077A400AE7DAD /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCCB2A7077A400AE7DAD /* CoreDataTests.swift */; };
 		C262DCCE2A708ED400AE7DAD /* CoreDataStackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCCD2A708ED400AE7DAD /* CoreDataStackTest.swift */; };
-		C262DCD22A71D28400AE7DAD /* MockEdamamServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCD12A71D28400AE7DAD /* MockEdamamServiceTest.swift */; };
 		C299CA072A2E5B1600437BFE /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C299CA052A2E5B1600437BFE /* Reciplease.xcdatamodeld */; };
 		C2BA639429E5B5CD0052484C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA639329E5B5CD0052484C /* AppDelegate.swift */; };
 		C2BA639629E5B5CD0052484C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA639529E5B5CD0052484C /* SceneDelegate.swift */; };
@@ -33,6 +32,9 @@
 		C2BB2A702A0C01890054F369 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */; };
 		C2BB2A722A0D70F50054F369 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */; };
 		C2BB2A742A0EA5950054F369 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A732A0EA5950054F369 /* RecipeTableViewCell.swift */; };
+		C2FBDC2B2A855B5D00CD3982 /* Mocker in Frameworks */ = {isa = PBXBuildFile; productRef = C2FBDC2A2A855B5D00CD3982 /* Mocker */; };
+		C2FBDC2E2A85A50700CD3982 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FBDC2D2A85A50700CD3982 /* XCTest.framework */; };
+		C2FBDC302A86F6B300CD3982 /* MockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FBDC2F2A86F6B300CD3982 /* MockedData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,11 +52,10 @@
 		C22222AD2A30C9FD005D9535 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecipe.swift; sourceTree = "<group>"; };
 		C262DCC12A68155000AE7DAD /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
-		C262DCC52A6FFCA900AE7DAD /* Recipe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipe.json; sourceTree = "<group>"; };
+		C262DCC52A6FFCA900AE7DAD /* Recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipes.json; sourceTree = "<group>"; };
 		C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamServiceTest.swift; sourceTree = "<group>"; };
 		C262DCCB2A7077A400AE7DAD /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		C262DCCD2A708ED400AE7DAD /* CoreDataStackTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTest.swift; sourceTree = "<group>"; };
-		C262DCD12A71D28400AE7DAD /* MockEdamamServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEdamamServiceTest.swift; sourceTree = "<group>"; };
 		C299CA062A2E5B1600437BFE /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		C2BA639029E5B5CD0052484C /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2BA639329E5B5CD0052484C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +76,9 @@
 		C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		C2BB2A732A0EA5950054F369 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		C2FBDC282A84028B00CD3982 /* Reciplease.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reciplease.xctestplan; sourceTree = "<group>"; };
+		C2FBDC2D2A85A50700CD3982 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C2FBDC2F2A86F6B300CD3982 /* MockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2FBDC2E2A85A50700CD3982 /* XCTest.framework in Frameworks */,
 				C21B2C452A57374D00CC7E25 /* Alamofire in Frameworks */,
+				C2FBDC2B2A855B5D00CD3982 /* Mocker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +114,9 @@
 		C262DCC42A6FF9E100AE7DAD /* EdamamTest */ = {
 			isa = PBXGroup;
 			children = (
-				C262DCC52A6FFCA900AE7DAD /* Recipe.json */,
-				C262DCD12A71D28400AE7DAD /* MockEdamamServiceTest.swift */,
+				C262DCC12A68155000AE7DAD /* MockURLProtocol.swift */,
+				C2FBDC2F2A86F6B300CD3982 /* MockedData.swift */,
+				C262DCC52A6FFCA900AE7DAD /* Recipes.json */,
 				C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */,
 			);
 			path = EdamamTest;
@@ -118,10 +125,12 @@
 		C2BA638729E5B5CD0052484C = {
 			isa = PBXGroup;
 			children = (
+				C2FBDC282A84028B00CD3982 /* Reciplease.xctestplan */,
 				C2BB2A6C2A0A92F00054F369 /* Secrets.xcconfig */,
 				C2BA639229E5B5CD0052484C /* Reciplease */,
 				C2BA63B229E5B95C0052484C /* RecipleaseTests */,
 				C2BA639129E5B5CD0052484C /* Products */,
+				C2FBDC2C2A85A50700CD3982 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,7 +191,6 @@
 		C2BA63B229E5B95C0052484C /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				C262DCC12A68155000AE7DAD /* MockURLProtocol.swift */,
 				C262DCC42A6FF9E100AE7DAD /* EdamamTest */,
 				C262DCC32A6FF99100AE7DAD /* CoreDataTests */,
 			);
@@ -211,6 +219,14 @@
 			path = Edamam;
 			sourceTree = "<group>";
 		};
+		C2FBDC2C2A85A50700CD3982 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2FBDC2D2A85A50700CD3982 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -229,6 +245,7 @@
 			name = Reciplease;
 			packageProductDependencies = (
 				C21B2C442A57374D00CC7E25 /* Alamofire */,
+				C2FBDC2A2A855B5D00CD3982 /* Mocker */,
 			);
 			productName = Reciplease;
 			productReference = C2BA639029E5B5CD0052484C /* Reciplease.app */;
@@ -282,6 +299,7 @@
 			mainGroup = C2BA638729E5B5CD0052484C;
 			packageReferences = (
 				C21B2C432A57374D00CC7E25 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C2FBDC292A855B5D00CD3982 /* XCRemoteSwiftPackageReference "Mocker" */,
 			);
 			productRefGroup = C2BA639129E5B5CD0052484C /* Products */;
 			projectDirPath = "";
@@ -308,7 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C262DCC62A6FFCA900AE7DAD /* Recipe.json in Resources */,
+				C262DCC62A6FFCA900AE7DAD /* Recipes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,9 +360,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2FBDC302A86F6B300CD3982 /* MockedData.swift in Sources */,
 				C262DCCA2A70049C00AE7DAD /* EdamamServiceTest.swift in Sources */,
 				C262DCC22A68155000AE7DAD /* MockURLProtocol.swift in Sources */,
-				C262DCD22A71D28400AE7DAD /* MockEdamamServiceTest.swift in Sources */,
 				C262DCCC2A7077A400AE7DAD /* CoreDataTests.swift in Sources */,
 				C262DCCE2A708ED400AE7DAD /* CoreDataStackTest.swift in Sources */,
 			);
@@ -631,6 +649,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		C2FBDC292A855B5D00CD3982 /* XCRemoteSwiftPackageReference "Mocker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WeTransfer/Mocker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -638,6 +664,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C21B2C432A57374D00CC7E25 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		C2FBDC2A2A855B5D00CD3982 /* Mocker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2FBDC292A855B5D00CD3982 /* XCRemoteSwiftPackageReference "Mocker" */;
+			productName = Mocker;
 		};
 /* End XCSwiftPackageProductDependency section */
 

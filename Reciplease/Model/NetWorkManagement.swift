@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 // MARK: - Enum
 enum HTTPMethod: String {
@@ -29,3 +30,7 @@ protocol ViewDelegate: AnyObject {
     func toggleActivityIndicator(shown: Bool)
     func presentAlert(title: String, message: String)
 }
+// MARK: - Protocol
+//protocol RecipeProtocol {
+//    func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void)
+//}

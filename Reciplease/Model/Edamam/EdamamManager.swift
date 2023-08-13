@@ -14,7 +14,7 @@ class EdamamManager {
 //    var data: Welcome?
     public private (set) var recipeList: [Recipe] = []
     
-    let recipeService = EdamamService(config: EdamamConfig())
+    let recipeService = EdamamService()
     public weak var delegate: ViewDelegate?
 
     // MARK: - Methods

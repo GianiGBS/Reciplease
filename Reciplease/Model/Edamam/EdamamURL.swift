@@ -8,17 +8,14 @@
 import Foundation
 
 // MARK: - Recipe API
-protocol EndpointConfig {
-    var url : String {get}
-    
+class EdamamURL {
+    static let endpoint = "https://api.edamam.com/api/recipes/v2?type=public&beta=false"
 }
-struct EdamamConfig: EndpointConfig {
-    
-    // MARK: - Properties
-    
-    private let endpoint = "https://api.edamam.com/api/recipes/v2"
-    private let parameter = "?type=public&beta=false"
-    var url: String {
-         endpoint + parameter
-    }
-}
+
+//    class RecipeSession: RecipeProtocol {
+//        func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void) {
+//            Alamofire.request(url).responseJSON { responseData in
+//                completionHandler(responseData)
+//            }
+//        }
+//    }
