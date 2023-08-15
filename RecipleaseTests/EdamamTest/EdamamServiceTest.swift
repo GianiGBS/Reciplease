@@ -17,7 +17,7 @@ class EdamamServiceTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-    
+        
         let manager: Session = {
             let configuration: URLSessionConfiguration = {
                 let configuration = URLSessionConfiguration.default
@@ -33,7 +33,7 @@ class EdamamServiceTests: XCTestCase {
         super.tearDown()
         URLProtocol.unregisterClass(MockURLProtocol.self)
     }
-
+    
     func testGetRecipeWithValidIngradients() {
         // Given
         let ingredients = ["Apple"]
@@ -62,45 +62,33 @@ class EdamamServiceTests: XCTestCase {
         XCTAssertNil(errorResult, "Error should be nil.")
         
         // Clean up
-        tearDown()
+        URLProtocol.unregisterClass(MockURLProtocol.self)
     }
-    
-//    func testGetRecipeWithEmptyIngredients() {
-//        // Given
-//
-//        // When
-//        let expectation = self.expectation(description: "getRecipes")
-//        let ingredients: [String] = []
-//        edamamService.getRecipes(for: ingredients){ success, response in
-//            // Then
-//            XCTAssertFalse(success, "La requête a réussi, mais elle devrait échouer avec des ingrédients vides.")
-//            XCTAssertNil(response, "la réponse devrait être nulle avec des ingredients vides")
-//            expectation.fulfill()
-//        }
-//
-//        wait(for: [expectation], timeout: 0.01)
-//
-//    }
-    
-//    func testGetRecipeWithInvalidCredentials() {
-//        // Given
-//
-//        // When
-//        let expectation = self.expectation(description: "getRecipes")
-//        let invalidConfig = EndpointConfig(url: "https://api.edamam.com/api/recipes/v2?type=public&beta=false",
-//                                           app_id: "",
-//                                           app_key: "")
-//
-//        let invalidEdamamService = EdamamService(config: invalidConfig)
-//
-//        let ingredients = ["chicken", "rice"]
-//        invalidEdamamService.getRecipe(for: ingredients){ success, response in
-//            // Then
-//            XCTAssertFalse(success, "La requête a réussi, mais elle devrait échouer avec des ingrédients vides.")
-//            XCTAssertNil(response, "La réponse devrait être nulle avec des clés d'accès incorrectes.")
-//            expectation.fulfill()
-//        }
-//
-//        wait(for: [expectation], timeout: 0.01)
-//    }
+
+    func testGetRecipeWithEmptyIngredients() {
+        // Given
+        let ingredients: [String] = []
+        
+        let getRecipesExpectation = self.expectation(description: "getRecipes")
+        var successResult: Bool?
+        var responseResult: Welcome?
+        var errorResult: Error?
+        
+        // When
+        edamamService.getRecipes(for: ingredients) { success, response in
+            successResult = success
+            responseResult = response
+            getRecipesExpectation.fulfill()
+        }
+        
+        wait(for: [getRecipesExpectation], timeout: 1.0)
+        
+        // Then
+        XCTAssertFalse(successResult ?? true, "Request should fail with empty ingredients.")
+        XCTAssertNil(responseResult, "Response should be nil.")
+        XCTAssertNil(errorResult, "Error should be nil.")
+        
+        // Clean up (if applicable)
+    }
+
 }

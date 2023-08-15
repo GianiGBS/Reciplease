@@ -33,7 +33,7 @@
 		C2BB2A722A0D70F50054F369 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */; };
 		C2BB2A742A0EA5950054F369 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A732A0EA5950054F369 /* RecipeTableViewCell.swift */; };
 		C2FBDC2B2A855B5D00CD3982 /* Mocker in Frameworks */ = {isa = PBXBuildFile; productRef = C2FBDC2A2A855B5D00CD3982 /* Mocker */; };
-		C2FBDC2E2A85A50700CD3982 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FBDC2D2A85A50700CD3982 /* XCTest.framework */; };
+		C2FBDC2E2A85A50700CD3982 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FBDC2D2A85A50700CD3982 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C2FBDC302A86F6B300CD3982 /* MockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FBDC2F2A86F6B300CD3982 /* MockedData.swift */; };
 /* End PBXBuildFile section */
 
