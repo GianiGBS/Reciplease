@@ -18,6 +18,8 @@ class ListTableViewController: UIViewController {
     public var recipes: [Recipe] = []
     private let segueIdentifier = "segueToDetail"
     let cellIdentifier = "RecipeCell"
+    private var selectedRecipe: Recipe?
+    var hits: [Hit]?
     var selectedRow = 0
     let recipeModel = EdamamManager()
     let coreDataModel = CoreDataManager()
@@ -91,12 +93,16 @@ extension ListTableViewController: UITableViewDataSource {
     }
     /// MARK: Number of Rows in Sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipes.count
+        return recipes.count // hits?.count ?? 0
     }
     /// MARK: Cell for Row At
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let recipeCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RecipeTableViewCell
         else { return UITableViewCell() }
+        
+//        guard let hits = hits else {
+//            return UITableViewCell()
+//        }
         
         let recipe = recipes[indexPath.row]
         
@@ -105,6 +111,7 @@ extension ListTableViewController: UITableViewDataSource {
               let subtitle = recipe.ingredientLines?.joined(separator: ", ")
         else { return recipeCell }
         
+//        recipeCell.configure()
         recipeCell.configure(imageUrl: URL(string: imageUrl)!, title: title, subtitle: subtitle)
         
         return recipeCell
@@ -114,6 +121,7 @@ extension ListTableViewController: UITableViewDataSource {
 // MARK: Did Select Row At
 extension ListTableViewController: UITableViewDelegate {
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
             self.selectedRow = indexPath.row
             performSegue(withIdentifier: segueIdentifier, sender: self)
         }

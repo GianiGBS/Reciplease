@@ -19,9 +19,9 @@ class EdamamManager {
 
     // MARK: - Methods
     public func getData(ingredientToFound: [String]) {
-        // self.delegate?.toggleActivityIndicator(shown: true)
-        recipeService.getRecipes(for: ingredientToFound ) { success, data in
-            // self.delegate?.toggleActivityIndicator(shown: false)
+// self.delegate?.toggleActivityIndicator(shown: true)
+        recipeService.getRecipes(for: ingredientToFound) { success, data in
+// self.delegate?.toggleActivityIndicator(shown: false)
             guard let data = data, success == true, let hits = data.hits else {
                 self.delegate?.presentAlert(title: "Echec de l'appel",
                                             message: "EDAMAM.API n'a pas répondu.\nVeuillez réessayer.")

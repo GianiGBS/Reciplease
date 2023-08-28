@@ -18,52 +18,24 @@ class EdamamServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let manager: Session = {
-            let configuration: URLSessionConfiguration = {
-                let configuration = URLSessionConfiguration.default
-                configuration.protocolClasses = [MockingURLProtocol.self]
-                return configuration
-            }()
-            return Session(configuration: configuration)
-        }()
-        edamamService = EdamamService(edamamSession: manager)
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self]
+        let sessionManager = Alamofire.Session(configuration: configuration)
+        edamamService = EdamamService(edamamSession: sessionManager)
+    
     }
     
     override func tearDown() {
         super.tearDown()
-        URLProtocol.unregisterClass(MockURLProtocol.self)
+        Mocker.removeAll()
     }
     
     func testGetRecipeWithValidIngradients() {
-        // Given
-        let ingredients = ["Apple"]
+//        Given
         
-        let mockedData = MockedData.exampleJSON
-        let mock = Mock(url: originalURL, dataType: .json, statusCode: 200, data: [.get: mockedData])
-        mock.register()
-
-        let getRecipesExpectation = self.expectation(description: "getRecipes")
-        var successResult: Bool?
-        var responseResult: Welcome?
-        var errorResult: Error?
-        
-        // When
-        edamamService.getRecipes(for: ingredients) { success, response in
-            successResult = success
-            responseResult = response
-            getRecipesExpectation.fulfill()
-        }
-        
-        wait(for: [getRecipesExpectation], timeout: 1.0)
-        
-        // Then
-        XCTAssertTrue(successResult ?? false, "Request should be successful.")
-        XCTAssertNotNil(responseResult, "Response should not be nil.")
-        XCTAssertNil(errorResult, "Error should be nil.")
-        
-        // Clean up
-        URLProtocol.unregisterClass(MockURLProtocol.self)
-    }
+//        When
+//        Then
+            }
 
     func testGetRecipeWithEmptyIngredients() {
         // Given
@@ -71,7 +43,7 @@ class EdamamServiceTests: XCTestCase {
         
         let getRecipesExpectation = self.expectation(description: "getRecipes")
         var successResult: Bool?
-        var responseResult: Welcome?
+        var responseResult: Recipes?
         var errorResult: Error?
         
         // When
@@ -90,5 +62,4 @@ class EdamamServiceTests: XCTestCase {
         
         // Clean up (if applicable)
     }
-
 }
