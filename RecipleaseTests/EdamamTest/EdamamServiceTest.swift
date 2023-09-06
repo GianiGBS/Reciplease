@@ -6,60 +6,113 @@
 //
 
 import XCTest
-import Mocker
 import Alamofire
 @testable import Reciplease
 
 class EdamamServiceTests: XCTestCase {
-    
+
     private var edamamService: EdamamService!
-    let originalURL = URL(string: EdamamURL.endpoint)!
-    
+
     override func setUp() {
         super.setUp()
-        
-        let configuration = URLSessionConfiguration.af.default
-        configuration.protocolClasses = [MockingURLProtocol.self]
-        let sessionManager = Alamofire.Session(configuration: configuration)
-        edamamService = EdamamService(edamamSession: sessionManager)
-    
     }
-    
+
     override func tearDown() {
         super.tearDown()
-        Mocker.removeAll()
     }
-    
-    func testGetRecipeWithValidIngradients() {
-//        Given
-        
-//        When
-//        Then
-            }
 
+// Test lorsque la reponse est bonne
+    func testGetRecipeWithValidIngradients() {
+        // Given
+        let mockedResult = MockedResult(response: MockedData.responseOK,
+                                        data: MockedData.recipesCorrectData,
+                                        error: nil)
+        // When
+        let mockedSession = MockEdamamSession(mockedResult: mockedResult)
+
+        // Then
+        edamamService = EdamamService(session: mockedSession)
+
+        edamamService.getRecipes(for: ["Apple"]) { recipe, error in
+            XCTAssert(recipe != nil) // La reponse doit être non nulle
+            XCTAssert(error == nil) // Aucune erreur ne doit survenir
+        }
+    }
+
+// Test lorsque la reponse de l'API est vide
+    func testGetRecipeWithEmptyReponse() {
+        // Given
+        let mockedResult = MockedResult(response: MockedData.responseOK,
+                                        data: nil,
+                                        error: nil)
+
+        // When
+        let mockedSession = MockEdamamSession(mockedResult: mockedResult)
+
+        // Then
+        edamamService = EdamamService(session: mockedSession)
+
+        edamamService.getRecipes(for: ["Apple"]) { recipe, error in
+            XCTAssert(recipe == nil) // La reponse doit être nulle
+            XCTAssert(error == nil ) // Aucune erreur ne doit survenir
+        }
+    }
+
+    // Test lorsque la reponse de l'API est invalide
+    func testGetRecipeWithInvalidResponse() {
+        // Given
+        let mockedResult = MockedResult(response: MockedData.responseOK,
+                                        data: MockedData.recipeIncorrectData,
+                                        error: nil)
+
+        // When
+        let mockedSession = MockEdamamSession(mockedResult: mockedResult)
+
+        // Then
+        edamamService = EdamamService(session: mockedSession)
+
+        edamamService.getRecipes(for: ["Apple"]) { recipe, error in
+            XCTAssert(recipe == nil) // La reponse doit être nulle
+            XCTAssert(error != nil ) // Une erreur doit survenir
+        }
+    }
+
+    // Test lorsque l'API renvoie une erreur
+    func testGetRecipeWithAPIError() {
+        // Given
+        let apiError = NSError(domain: "com.edamam.api", code: 500, userInfo: nil)
+        let mockedResult = MockedResult(response: nil,
+                                        data: nil,
+                                        error: apiError)
+
+        // When
+        let mockedSession = MockEdamamSession(mockedResult: mockedResult)
+
+        // Then
+        edamamService = EdamamService(session: mockedSession)
+
+        edamamService.getRecipes(for: ["Apple"]) { recipe, error in
+            XCTAssert(recipe == nil) // La reponse doit être nulle en raison de l'erreur API
+            XCTAssert(error != nil ) // Une erreur doit survenir
+        }
+    }
+
+    // Test lorsque la liste des ingredients est vide
     func testGetRecipeWithEmptyIngredients() {
         // Given
-        let ingredients: [String] = []
-        
-        let getRecipesExpectation = self.expectation(description: "getRecipes")
-        var successResult: Bool?
-        var responseResult: Recipes?
-        var errorResult: Error?
-        
+        let mockedResult = MockedResult(response: MockedData.responseOK,
+                                        data: MockedData.recipesCorrectData,
+                                        error: nil)
+
         // When
-        edamamService.getRecipes(for: ingredients) { success, response in
-            successResult = success
-            responseResult = response
-            getRecipesExpectation.fulfill()
-        }
-        
-        wait(for: [getRecipesExpectation], timeout: 1.0)
-        
+        let mockedSession = MockEdamamSession(mockedResult: mockedResult)
+
         // Then
-        XCTAssertFalse(successResult ?? true, "Request should fail with empty ingredients.")
-        XCTAssertNil(responseResult, "Response should be nil.")
-        XCTAssertNil(errorResult, "Error should be nil.")
-        
-        // Clean up (if applicable)
+        edamamService = EdamamService(session: mockedSession)
+
+        edamamService.getRecipes(for: []) { recipe, error in
+            XCTAssert(recipe == nil) // La reponse doit être nulle en raison de l'erreur API
+            XCTAssert(error == nil ) // Aucund erreur ne doit survenir
+        }
     }
 }

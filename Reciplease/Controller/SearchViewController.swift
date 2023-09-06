@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
     }
     private let segueIdentifier = "segueToResult"
     static var cellIndentifier = "IngredientCell"
-    var ingredientSearchList : [String] = []
+    var ingredientSearchList: [String] = []
 
     // MARK: - Navigation
     override func viewDidLoad() {
@@ -62,7 +62,7 @@ class SearchViewController: UIViewController {
 //        toggleActivityIndicator(shown: true)
        ingredientForSearchShouldReturn()
     }
-    
+
     // MARK: - Methods
     func ingredientForSearchShouldReturn() {
         if ingredientSearchList.isEmpty {
@@ -104,14 +104,16 @@ extension SearchViewController: UITableViewDataSource {
         let ingredient = ingredientSearchList[indexPath.row]
 
         cell.textLabel?.text = ingredient
-        
+
         return cell
     }
 }
 // MARK: - UITableView - Delegate
 extension SearchViewController: UITableViewDelegate {
     // MARK: Editing Style
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             ingredientSearchList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)

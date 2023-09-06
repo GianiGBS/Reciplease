@@ -10,14 +10,11 @@ import CoreData
 @testable import Reciplease
 
 class CoreDataManagerTests: XCTestCase {
-    
-//    MARK: - Properties
-    
+    // MARK: - Properties
     var coreDataStack: CoreDataStackTest!
     var coreDataManager: CoreDataManager!
-    
-//    MARK: - Setup and Teardown
 
+    // MARK: - Setup and Teardown
     override func setUpWithError() throws {
         try super.setUpWithError()
         coreDataStack = CoreDataStackTest.sharedTinstance
@@ -29,12 +26,15 @@ class CoreDataManagerTests: XCTestCase {
         coreDataManager = nil
         try super.tearDownWithError()
     }
-    
-//    MARK: - Tests
+
+    // MARK: - Tests
 
     func testAddRecipeToFavorites() {
         // Given
-        let recipe = Recipe(uri: "recipe1", label: "Recipe 1", image: "image1", source: "Source 1", url: "url1", ingredientLines: ["ingredient1", "ingredient2"])
+        let recipe = Recipe(uri: "recipe1", label: "Recipe 1",
+                            image: "image1", source: "Source 1",
+                            url: "url1", yield: 0,
+                            ingredientLines: ["ingredient1", "ingredient2"], totalTime: 0)
         // When
         do {
             try coreDataManager.addRecipesToFav(recipe: recipe)
@@ -48,14 +48,17 @@ class CoreDataManagerTests: XCTestCase {
 
     func testDeleteRecipeFromfavorites() {
         //  Given
-        let recipe = Recipe(uri: "recipe1", label: "Recipe 1", image: "image1", source: "Source 1", url: "url1", ingredientLines: ["ingredient1", "ingredient2"])
+        let recipe = Recipe(uri: "recipe1", label: "Recipe 1",
+                            image: "image1", source: "Source 1",
+                            url: "url1", yield: 0,
+                            ingredientLines: ["ingredient1", "ingredient2"], totalTime: 0)
         //  When
         do {
             try coreDataManager.addRecipesToFav(recipe: recipe)
             try coreDataManager.deleteOneRecipes(url: "url1")
             let recipes = coreDataManager.getAllFavRecipes()
             //  Then
-            XCTAssertFalse(recipes.contains{ $0.uri == "recipe1" })
+            XCTAssertFalse(recipes.contains {$0.uri == "recipe1"})
         } catch {
             XCTFail("Deleting recipe from favorites failed with error: \(error.localizedDescription)")
         }
@@ -63,7 +66,10 @@ class CoreDataManagerTests: XCTestCase {
 
     func testCheckIfItemExist() {
         //  Given
-        let recipe = Recipe(uri: "recipe1", label: "Recipe 1", image: "image1", source: "Source 1", url: "url1", ingredientLines: ["ingredient1", "ingredient2"])
+        let recipe = Recipe(uri: "recipe1", label: "Recipe 1",
+                            image: "image1", source: "Source 1",
+                            url: "url1", yield: 0,
+                            ingredientLines: ["ingredient1", "ingredient2"], totalTime: 0)
         //   When
         do {
             try coreDataManager.addRecipesToFav(recipe: recipe)

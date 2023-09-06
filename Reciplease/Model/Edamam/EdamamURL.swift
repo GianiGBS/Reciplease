@@ -11,5 +11,3 @@ import Foundation
 class EdamamURL {
     static let endpoint = "https://api.edamam.com/api/recipes/v2?type=public&beta=false"
 }
-
-

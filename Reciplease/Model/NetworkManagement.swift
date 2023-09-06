@@ -8,12 +8,6 @@
 import Foundation
 import Alamofire
 
-// MARK: - Enum
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-}
-
 // MARK: - Verified Key
 func verifiedKey(accesKey: String) -> String {
     let apiKey = Bundle.main.object(forInfoDictionaryKey: accesKey) as? String
@@ -33,26 +27,20 @@ protocol ViewDelegate: AnyObject {
 
 // MARK: - Protocol
 protocol AFSession {
-    func request(url: URL, method: HTTPMethod, parameters: Parameters, completionHandler: @escaping (DataResponse<Recipes, AFError>?) -> Void)
+    func request(url: URL,
+                 method: HTTPMethod,
+                 parameters: Parameters,
+                 completionHandler: @escaping (AFDataResponse<Data>) -> Void)
 }
 
 final class EdamamSession: AFSession {
-    
-    func request(url: URL, method: HTTPMethod, parameters: Parameters, completionHandler: @escaping (DataResponse<Recipes, AFError>?) -> Void) {
-        AF.request(url).responseDecodable(of: Recipes.self) { (responseData) in
+
+    func request(url: URL,
+                 method: Alamofire.HTTPMethod,
+                 parameters: Alamofire.Parameters,
+                 completionHandler: @escaping (Alamofire.AFDataResponse<Data>) -> Void) {
+        AF.request(url).responseDecodable { responseData in
             completionHandler(responseData)
         }
-        }
+    }
 }
-
-
-//        AF.request(url).responseDecodable { (response: DataResponse<T, AFError>) in
-//                completionHandler(response)
-//            }
-
-
-//    func request(url: URL, completionHandler: @escaping (AFDataResponse<Any>) -> Void) {
-//        AF.request(url).responseData { response in
-//            completionHandler(response)
-//        }
-//    }

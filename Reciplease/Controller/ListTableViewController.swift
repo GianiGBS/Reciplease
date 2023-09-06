@@ -8,13 +8,13 @@
 import UIKit
 
 class ListTableViewController: UIViewController {
-    
+
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
-    
+
     // MARK: - Properties
-    var ingredients : [String] = []
+    var ingredients: [String] = []
     public var recipes: [Recipe] = []
     private let segueIdentifier = "segueToDetail"
     let cellIdentifier = "RecipeCell"
@@ -47,9 +47,9 @@ class ListTableViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - Init
-    
+
     // MARK: - Methods
     func setupTableView() {
         tableView.dataSource = self
@@ -59,7 +59,7 @@ class ListTableViewController: UIViewController {
         recipeModel.delegate = self
     }
     /// Loading Data
-    func start(){
+    func start() {
         if isBookmarksView {
             print("Is Bookmark")
             checkRecipes()
@@ -68,16 +68,14 @@ class ListTableViewController: UIViewController {
             containerView.isHidden = true
             recipeModel.getData(ingredientToFound: ingredients)
             tableView.reloadData()
-            
         }
     }
     func checkRecipes() {
         if coreDataModel.getAllFavRecipes().count > 0 {
             /// Show ListTableViewController
-            recipes = coreDataModel.recipeList
+            recipes = coreDataModel.allRecipes
             tableView.reloadData()
             containerView.isHidden = true
-            
         } else {
             /// Show Empty FavoriteViewController
             containerView.isHidden = false
@@ -87,33 +85,41 @@ class ListTableViewController: UIViewController {
 
 // MARK: - UITableView - DataSource
 extension ListTableViewController: UITableViewDataSource {
-    /// MARK: Number of Sections
+    // MARK: Number of Sections
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    /// MARK: Number of Rows in Sections
+    // MARK: Number of Rows in Sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count // hits?.count ?? 0
     }
-    /// MARK: Cell for Row At
+    // MARK: Cell for Row At
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let recipeCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RecipeTableViewCell
+        guard let recipeCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
+                                                             for: indexPath) as? RecipeTableViewCell
         else { return UITableViewCell() }
-        
+
 //        guard let hits = hits else {
 //            return UITableViewCell()
 //        }
-        
+
         let recipe = recipes[indexPath.row]
-        
+
         guard let imageUrl = recipe.image,
               let title = recipe.label,
-              let subtitle = recipe.ingredientLines?.joined(separator: ", ")
+              let subtitle = recipe.ingredientLines?.joined(separator: ", "),
+              let yield = recipe.yield,
+              let totalTime = recipe.totalTime
+
         else { return recipeCell }
-        
+
 //        recipeCell.configure()
-        recipeCell.configure(imageUrl: URL(string: imageUrl)!, title: title, subtitle: subtitle)
-        
+        recipeCell.configure(imageUrl: URL(string: imageUrl)!,
+                             title: title,
+                             subtitle: subtitle,
+                             yield: yield,
+                             totalTime: totalTime)
+
         return recipeCell
     }
 }
@@ -121,7 +127,6 @@ extension ListTableViewController: UITableViewDataSource {
 // MARK: Did Select Row At
 extension ListTableViewController: UITableViewDelegate {
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
             self.selectedRow = indexPath.row
             performSegue(withIdentifier: segueIdentifier, sender: self)
         }
@@ -135,13 +140,12 @@ extension ListTableViewController: ViewDelegate {
         tableView.reloadData()
 //        toggleActivityIndicator(shown: false)
     }
-    
+
     func presentAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
-    
     internal func toggleActivityIndicator(shown: Bool) {
 //        convertButton.isUserInteractionEnabled = !shown
 //        activityIndicator.isHidden = !shown

@@ -9,19 +9,20 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-    
+
     // MARK: - Properties
-    var recipeList: [Recipe] = []
-    
+    var allRecipes: [Recipe] = []
+
     private let coreDataStack: CoreDataStack
     private let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
     public weak var delegate: ViewDelegate?
-    
+
     // MARK: - Init
     init(coreDataStack: CoreDataStack = CoreDataStack.sharedInstance) {
         self.coreDataStack = coreDataStack
     }
     // MARK: - Methods
+
     // MARK: Get all recipes
     func getAllFavRecipes() -> [Recipe] {
         guard let coreDataRecipes = try? coreDataStack.viewContext.fetch(request) else {
@@ -29,10 +30,10 @@ class CoreDataManager {
         }
         for coreDataRecipe in coreDataRecipes {
             if let recipe = convertCoreDataRecipeToRecipe(coreDataRecipe) {
-                self.recipeList.append(recipe)
+                self.allRecipes.append(recipe)
             }
         }
-        return recipeList
+        return allRecipes
     }
 
     // MARK: Save a recipe in CoreData
@@ -43,7 +44,9 @@ class CoreDataManager {
         coreDataRecipe.image = recipe.image
         coreDataRecipe.source = recipe.source
         coreDataRecipe.url = recipe.url
+        coreDataRecipe.yield = Int32(recipe.yield ?? 0)
         coreDataRecipe.ingredientLines = recipe.ingredientLines?.joined(separator: ",")
+        coreDataRecipe.totalTime = Int32(recipe.totalTime ?? 0)
         do {
             try coreDataStack.viewContext.save()
         } catch {
@@ -84,36 +87,31 @@ class CoreDataManager {
         }
         do {
             try coreDataStack.viewContext.save()
-            
+
         } catch {
             throw CoreDataError.deleteFailed
         }
     }
-//    MARK: - Helper Methods
+    // MARK: - Helper Methods
 //    Convert CoreData to Recipe
-    private func convertCoreDataRecipeToRecipe(_ coreDataRecipe: CoreDataRecipe) -> Recipe? {
-        guard let uri = coreDataRecipe.uri,
-              let label = coreDataRecipe.label,
-              let image = coreDataRecipe.image,
-              let source = coreDataRecipe.source,
-              let url = coreDataRecipe.url,
-              let ingredientLines = coreDataRecipe.ingredientLines
-        else {
+    private func convertCoreDataRecipeToRecipe(_ coreDataRecipe: CoreDataRecipe?) -> Recipe? {
+        guard let coreDataRecipe = coreDataRecipe else {
             return nil
         }
-        return Recipe(uri: uri,
-                      label: label,
-                      image: image,
-                      source: source,
-                      url: url,
-                      ingredientLines: (ingredientLines.split(separator: ",").map { String($0) }))
+        return Recipe(uri: coreDataRecipe.uri ?? "",
+                      label: coreDataRecipe.label ?? "",
+                      image: coreDataRecipe.image ?? "",
+                      source: coreDataRecipe.source ?? "",
+                      url: coreDataRecipe.url ?? "",
+                      yield: Int(coreDataRecipe.yield),
+                      ingredientLines: coreDataRecipe.ingredientLines?.split(separator: ",").map { String($0) },
+                      totalTime: Int(coreDataRecipe.totalTime))
         }
     }
 // MARK: - CoreDataError
 enum CoreDataError: Error {
     case saveFailed
     case deleteFailed
-    
     var localizedDescription: String {
         switch self {
         case.saveFailed:

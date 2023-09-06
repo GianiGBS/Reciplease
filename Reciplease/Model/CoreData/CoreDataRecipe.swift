@@ -9,4 +9,4 @@ import Foundation
 import CoreData
 
 class CoreDataRecipe: NSManagedObject {}
-//CoreDataRecipe().label
+// CoreDataRecipe().label

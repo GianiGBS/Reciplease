@@ -10,10 +10,7 @@ import UIKit
 class FavoriteViewController: UIViewController {
     // MARK: - Properties
     private let coreDataManager = CoreDataManager()
-    
-    
-    
-    
+
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,5 +24,4 @@ class FavoriteViewController: UIViewController {
 //    }
     // MARK: - Methods
 
-    
 }

@@ -8,17 +8,19 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-    
+
     // MARK: - Outlet
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTtile: UILabel!
     @IBOutlet weak var ingredientsList: UILabel!
     @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var yieldLabel: UILabel!
+    @IBOutlet weak var totalTimeLabel: UILabel!
 
     // MARK: - Properties
     var selectedRecipe: Recipe?
     private let coreDataModel = CoreDataManager()
-    
+
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +29,7 @@ class DetailsViewController: UIViewController {
     // MARK: - Actions
     @IBAction func favButtonTapped(_ sender: Any) {
         save(recipe: selectedRecipe)
-//    TODO: Reload TableView
-        
+
     }
     @IBAction func getDirectionsTapped(_ sender: Any) {
         guard let recipe = selectedRecipe,
@@ -40,7 +41,7 @@ class DetailsViewController: UIViewController {
         }
         UIApplication.shared.open(url)
     }
-    
+
     // MARK: - Methods
     /// Update View with recipe's details
     func updateView(recipe: Recipe?) {
@@ -49,9 +50,9 @@ class DetailsViewController: UIViewController {
               let imageUrl = recipe.image,
               let title = recipe.label,
               let info = recipe.ingredientLines?.joined(separator: "\n -")
-                
+
         else { return }
-        
+
         recipeImage.load(url: URL(string: imageUrl)!)
         recipeTtile.text = title
         ingredientsList.text = " -" + info
@@ -76,7 +77,6 @@ class DetailsViewController: UIViewController {
             if coreDataModel.checkIfItemExist(url: recipeUrl) {
                 do {
                     try coreDataModel.deleteOneRecipes(url: recipeUrl)
-                    
                 } catch {
                     print(error)
                 }

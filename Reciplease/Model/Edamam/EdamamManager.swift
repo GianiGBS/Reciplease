@@ -13,23 +13,21 @@ class EdamamManager {
     // MARK: - Properties
 //    var data: Welcome?
     public private (set) var recipeList: [Recipe] = []
-    
     let recipeService = EdamamService()
     public weak var delegate: ViewDelegate?
 
     // MARK: - Methods
     public func getData(ingredientToFound: [String]) {
 // self.delegate?.toggleActivityIndicator(shown: true)
-        recipeService.getRecipes(for: ingredientToFound) { success, data in
+        recipeService.getRecipes(for: ingredientToFound) { data, error in
 // self.delegate?.toggleActivityIndicator(shown: false)
-            guard let data = data, success == true, let hits = data.hits else {
+            guard let data = data, error != nil, let hits = data.hits else {
                 self.delegate?.presentAlert(title: "Echec de l'appel",
                                             message: "EDAMAM.API n'a pas répondu.\nVeuillez réessayer.")
                 return
             }
             self.recipeList = hits.compactMap {$0.recipe}
             print(self.recipeList)
-            
             self.delegate?.updateView()
         }
     }
