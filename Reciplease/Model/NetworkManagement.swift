@@ -27,20 +27,8 @@ protocol ViewDelegate: AnyObject {
 
 // MARK: - Protocol
 protocol AFSession {
+
     func request(url: URL,
                  method: HTTPMethod,
-                 parameters: Parameters,
                  completionHandler: @escaping (AFDataResponse<Data>) -> Void)
-}
-
-final class EdamamSession: AFSession {
-
-    func request(url: URL,
-                 method: Alamofire.HTTPMethod,
-                 parameters: Alamofire.Parameters,
-                 completionHandler: @escaping (Alamofire.AFDataResponse<Data>) -> Void) {
-        AF.request(url).responseDecodable { responseData in
-            completionHandler(responseData)
-        }
-    }
 }

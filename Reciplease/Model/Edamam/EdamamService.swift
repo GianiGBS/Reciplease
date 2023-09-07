@@ -21,21 +21,14 @@ class EdamamService {
 
     // MARK: - Methods
     func getRecipes(for ingredients: [String], callback: @escaping(Recipes?, Error?) -> Void) {
-        let foodsParameter = ["app_id": verifiedKey(accesKey: "API_RECIPE_ID"),
-                              "app_key": verifiedKey(accesKey: "API_RECIPE_KEY"),
-                              "q": ingredients.joined(separator: ",")]
-
-        let url = EdamamURL.endpoint
-        guard let endpointURL = URL(string: url) else {
+        guard let apiURL = EdamamURL.endpoint(foodsParameter: ingredients) else {
                 // Handle the case where the URL is invalid
-            print(AFError.invalidURL(url: url))
             callback(nil, EdamamErrors.invalidURL)
                 return
             }
 
-        session.request(url: endpointURL,
-                        method: .get,
-                        parameters: foodsParameter) {(responseData: AFDataResponse<Data>) in
+        session.request(url: apiURL,
+                        method: .get) { (responseData: AFDataResponse<Data>) in
             DispatchQueue.main.async {
                 switch responseData.result {
                 case .success(let data):
@@ -55,7 +48,18 @@ class EdamamService {
         }
     }
 }
+
+class EdamamSession: AFSession {
+    func request(url: URL,
+                 method: Alamofire.HTTPMethod,
+                 completionHandler: @escaping (Alamofire.AFDataResponse<Data>) -> Void) {
+        AF.request(url).responseDecodable { responseData in
+            completionHandler(responseData)
+        }
+    }
+}
 enum EdamamErrors: Error {
     case invalidURL
     case decodingError
+    case server
 }

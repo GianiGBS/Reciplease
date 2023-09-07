@@ -10,5 +10,4 @@ import Foundation
 // MARK: - Recipes
 struct Recipes: Decodable {
     let hits: [Hit]?
-
 }

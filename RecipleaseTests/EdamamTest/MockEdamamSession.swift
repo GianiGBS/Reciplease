@@ -28,7 +28,6 @@ final class MockEdamamSession: AFSession {
     // MARK: - Methods
     func request(url: URL,
                  method: Alamofire.HTTPMethod,
-                 parameters: Alamofire.Parameters,
                  completionHandler: @escaping (Alamofire.AFDataResponse<Data>) -> Void) {
         let httpResponse = mockedResult.response
         let data = mockedResult.data
@@ -45,12 +44,6 @@ final class MockEdamamSession: AFSession {
                 result = .failure(afError)
             }
         }
-
-        // Create a fake HTTPURLResponse
-        let httpUrlResponse = HTTPURLResponse(url: url,
-                                              statusCode: httpResponse?.statusCode ?? 200,
-                                              httpVersion: nil,
-                                              headerFields: nil)!
 
         // Create an AFDataResponse object
         let dataResponse = AFDataResponse<Data>(

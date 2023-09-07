@@ -111,8 +111,8 @@ class EdamamServiceTests: XCTestCase {
         edamamService = EdamamService(session: mockedSession)
 
         edamamService.getRecipes(for: []) { recipe, error in
-            XCTAssert(recipe == nil) // La reponse doit être nulle en raison de l'erreur API
-            XCTAssert(error == nil ) // Aucund erreur ne doit survenir
+            XCTAssert(recipe == nil) // Reponse should be nil du to error
+            XCTAssert(error == nil ) // Aucune erreur ne doit survenir
         }
     }
 }
