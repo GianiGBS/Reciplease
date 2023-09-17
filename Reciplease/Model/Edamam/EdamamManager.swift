@@ -11,24 +11,28 @@ import Foundation
 class EdamamManager {
 
     // MARK: - Properties
-//    var data: Welcome?
-    public private (set) var recipeList: [Recipe] = []
+    private (set) var recipeList: [Recipe] = []
     let recipeService = EdamamService()
     public weak var delegate: ViewDelegate?
 
     // MARK: - Methods
-    public func getData(ingredientToFound: [String]) {
-// self.delegate?.toggleActivityIndicator(shown: true)
-        recipeService.getRecipes(for: ingredientToFound) { data, error in
-// self.delegate?.toggleActivityIndicator(shown: false)
-            guard let data = data, error != nil, let hits = data.hits else {
-                self.delegate?.presentAlert(title: "Echec de l'appel",
-                                            message: "EDAMAM.API n'a pas répondu.\nVeuillez réessayer.")
-                return
+    public func fetchData(for ingredients: [String]) {
+
+        recipeService.getRecipes(for: ingredients) { [weak self] recipes, error in
+            DispatchQueue.main.async { [weak self] in
+                if let error = error {
+                    self?.handleError(error)
+                } else if let recipes = recipes {
+                    self?.recipeList = (recipes.hits?.compactMap {$0.recipe})!
+                    self?.delegate?.updateView()
+                }
             }
-            self.recipeList = hits.compactMap {$0.recipe}
-            print(self.recipeList)
-            self.delegate?.updateView()
         }
     }
+    // MARK: - Private Methods
+        private func handleError(_ error: Error) {
+            // Handle the error appropriately, e.g., show an alert or log it.
+            delegate?.presentAlert(title: "Erreur de chargement",
+                                   message: "Une erreur lors du chargement des données. Veuillez réessayer plus tard.")
+        }
 }

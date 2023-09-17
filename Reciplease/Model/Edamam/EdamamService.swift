@@ -53,7 +53,7 @@ class EdamamSession: AFSession {
     func request(url: URL,
                  method: Alamofire.HTTPMethod,
                  completionHandler: @escaping (Alamofire.AFDataResponse<Data>) -> Void) {
-        AF.request(url).responseDecodable { responseData in
+        AF.request(url).responseData { responseData in
             completionHandler(responseData)
         }
     }

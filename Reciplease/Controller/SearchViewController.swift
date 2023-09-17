@@ -45,7 +45,9 @@ class SearchViewController: UIViewController {
 
     // MARK: - Actions
     @IBAction func addButtonTapped() {
-        guard let ingredientName = ingredientTextField.text, !ingredientName.isEmpty  else {
+        guard let ingredientName = ingredientTextField.text?.trimmingCharacters(
+            in: .whitespacesAndNewlines).trimmingCharacters(
+                in: .punctuationCharacters), !ingredientName.isEmpty  else {
                 presentAlert(title: "Entrée vide",
                                          message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
             return
@@ -103,7 +105,7 @@ extension SearchViewController: UITableViewDataSource {
 
         let ingredient = ingredientSearchList[indexPath.row]
 
-        cell.textLabel?.text = ingredient
+        cell.textLabel?.text = ingredient.capitalized
 
         return cell
     }

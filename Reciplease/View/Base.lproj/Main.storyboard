@@ -354,6 +354,11 @@
                             <constraint firstAttribute="bottom" secondItem="7Hd-mf-tAW" secondAttribute="bottom" id="b31-jy-yBH"/>
                             <constraint firstItem="kpz-gb-1mC" firstAttribute="leading" secondItem="4SQ-3m-2v3" secondAttribute="leading" id="xLt-VW-hmO"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="7Hd-mf-tAW"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="1dp-hL-P8n"/>
                     <connections>

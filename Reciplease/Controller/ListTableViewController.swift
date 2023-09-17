@@ -61,12 +61,12 @@ class ListTableViewController: UIViewController {
     /// Loading Data
     func start() {
         if isBookmarksView {
-            print("Is Bookmark")
+            print("Is Bookmark") // it's Fav Recipe
             checkRecipes()
         } else {
-            print("Not Bookmark")
+            print("Not Bookmark") // it's Seach Recipe
             containerView.isHidden = true
-            recipeModel.getData(ingredientToFound: ingredients)
+            recipeModel.fetchData(for: ingredients)
             tableView.reloadData()
         }
     }
