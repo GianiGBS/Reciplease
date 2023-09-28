@@ -17,8 +17,6 @@ class CoreDataStackTest: CoreDataStack {
     private let persistentContainerName = "Reciplease"
 
     // MARK: - Private
-//    private override init() {
-//        super.init()
     private lazy var persistentContainer: NSPersistentContainer = {
         let persistentStoreDescription = NSPersistentStoreDescription()
         persistentStoreDescription.type = NSInMemoryStoreType

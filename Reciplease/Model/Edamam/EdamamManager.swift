@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Change
 class EdamamManager {
 
     // MARK: - Properties
@@ -17,8 +16,9 @@ class EdamamManager {
 
     // MARK: - Methods
     public func fetchData(for ingredients: [String]) {
-
+        self.delegate?.toggleActivityIndicator(shown: true)
         recipeService.getRecipes(for: ingredients) { [weak self] recipes, error in
+            self?.delegate?.toggleActivityIndicator(shown: false)
             DispatchQueue.main.async { [weak self] in
                 if let error = error {
                     self?.handleError(error)

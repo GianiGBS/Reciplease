@@ -37,8 +37,8 @@ class CoreDataManagerTests: XCTestCase {
                             ingredientLines: ["ingredient1", "ingredient2"], totalTime: 0)
         // When
         do {
-            try coreDataManager.addRecipesToFav(recipe: recipe)
-            let recipes = coreDataManager.getAllFavRecipes()
+            try coreDataManager.addRecipeToFav(recipe: recipe)
+            let recipes = coreDataManager.fetchFavRecipes()
             // Then
             XCTAssertTrue(recipes.contains { $0.uri == "recipe1" })
         } catch {
@@ -54,9 +54,9 @@ class CoreDataManagerTests: XCTestCase {
                             ingredientLines: ["ingredient1", "ingredient2"], totalTime: 0)
         //  When
         do {
-            try coreDataManager.addRecipesToFav(recipe: recipe)
-            try coreDataManager.deleteOneRecipes(url: "url1")
-            let recipes = coreDataManager.getAllFavRecipes()
+            try coreDataManager.addRecipeToFav(recipe: recipe)
+            try coreDataManager.deleteOneRecipeFromFav(url: "url1")
+            let recipes = coreDataManager.fetchFavRecipes()
             //  Then
             XCTAssertFalse(recipes.contains {$0.uri == "recipe1"})
         } catch {
@@ -72,7 +72,7 @@ class CoreDataManagerTests: XCTestCase {
                             ingredientLines: ["ingredient1", "ingredient2"], totalTime: 0)
         //   When
         do {
-            try coreDataManager.addRecipesToFav(recipe: recipe)
+            try coreDataManager.addRecipeToFav(recipe: recipe)
             //  Then
             XCTAssertTrue(coreDataManager.checkIfItemExist(url: "url1"))
             XCTAssertFalse(coreDataManager.checkIfItemExist(url: "url2"))

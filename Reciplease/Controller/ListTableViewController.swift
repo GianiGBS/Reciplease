@@ -11,34 +11,28 @@ class ListTableViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - Properties
     var ingredients: [String] = []
     public var recipes: [Recipe] = []
-    private let segueIdentifier = "segueToDetail"
+    private let segueIdentifier = "SeachToDetail"
     let cellIdentifier = "RecipeCell"
     private var selectedRecipe: Recipe?
-    var hits: [Hit]?
     var selectedRow = 0
     let recipeModel = EdamamManager()
-    let coreDataModel = CoreDataManager()
-
-    private var isBookmarksView: Bool {
-        return tabBarController?.selectedIndex == 1
-    }
 
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        setupRecipeModel()
-        start()
+        setUpTableView()
+        setUpDelegateModel()
+        loadData()
         tableView.rowHeight = 200
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        updateView()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
@@ -48,38 +42,18 @@ class ListTableViewController: UIViewController {
         }
     }
 
-    // MARK: - Init
-
     // MARK: - Methods
-    func setupTableView() {
+    func setUpTableView() {
         tableView.dataSource = self
         tableView.delegate = self
     }
-    func setupRecipeModel() {
+    func setUpDelegateModel() {
         recipeModel.delegate = self
     }
     /// Loading Data
-    func start() {
-        if isBookmarksView {
-            print("Is Bookmark") // it's Fav Recipe
-            checkRecipes()
-        } else {
-            print("Not Bookmark") // it's Seach Recipe
-            containerView.isHidden = true
-            recipeModel.fetchData(for: ingredients)
-            tableView.reloadData()
-        }
-    }
-    func checkRecipes() {
-        if coreDataModel.getAllFavRecipes().count > 0 {
-            /// Show ListTableViewController
-            recipes = coreDataModel.allRecipes
-            tableView.reloadData()
-            containerView.isHidden = true
-        } else {
-            /// Show Empty FavoriteViewController
-            containerView.isHidden = false
-        }
+    func loadData() {
+        recipeModel.fetchData(for: ingredients)
+        tableView.reloadData()
     }
 }
 
@@ -91,17 +65,13 @@ extension ListTableViewController: UITableViewDataSource {
     }
     // MARK: Number of Rows in Sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipes.count // hits?.count ?? 0
+        return recipes.count
     }
     // MARK: Cell for Row At
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let recipeCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
                                                              for: indexPath) as? RecipeTableViewCell
         else { return UITableViewCell() }
-
-//        guard let hits = hits else {
-//            return UITableViewCell()
-//        }
 
         let recipe = recipes[indexPath.row]
 
@@ -113,7 +83,7 @@ extension ListTableViewController: UITableViewDataSource {
 
         else { return recipeCell }
 
-//        recipeCell.configure()
+        /// Configuration of recipeCell
         recipeCell.configure(imageUrl: URL(string: imageUrl)!,
                              title: title,
                              subtitle: subtitle,
@@ -138,7 +108,6 @@ extension ListTableViewController: ViewDelegate {
     func updateView() {
         self.recipes = recipeModel.recipeList
         tableView.reloadData()
-//        toggleActivityIndicator(shown: false)
     }
 
     func presentAlert(title: String, message: String) {
@@ -147,7 +116,6 @@ extension ListTableViewController: ViewDelegate {
         present(alertVC, animated: true, completion: nil)
     }
     internal func toggleActivityIndicator(shown: Bool) {
-//        convertButton.isUserInteractionEnabled = !shown
-//        activityIndicator.isHidden = !shown
+        activityIndicator.isHidden = !shown
     }
 }

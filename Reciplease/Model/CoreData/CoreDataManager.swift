@@ -12,7 +12,6 @@ class CoreDataManager {
 
     // MARK: - Properties
     var allRecipes: [Recipe] = []
-
     private let coreDataStack: CoreDataStack
     private let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
     public weak var delegate: ViewDelegate?
@@ -24,7 +23,8 @@ class CoreDataManager {
     // MARK: - Methods
 
     // MARK: Get all recipes
-    func getAllFavRecipes() -> [Recipe] {
+    func fetchFavRecipes() -> [Recipe] {
+        allRecipes.removeAll()
         guard let coreDataRecipes = try? coreDataStack.viewContext.fetch(request) else {
             return []
         }
@@ -36,8 +36,24 @@ class CoreDataManager {
         return allRecipes
     }
 
+    // MARK: - Refresh CoreData
+        func refresh() {
+            // Erase all Recipes form list
+            allRecipes.removeAll()
+            // Fetch all fav recipes from CoreData
+            if let coreDataRecipes = try? coreDataStack.viewContext.fetch(request) {
+                for coreDataRecipe in coreDataRecipes {
+                    if let recipe = convertCoreDataRecipeToRecipe(coreDataRecipe) {
+                        // Add all Recipes to list
+                        allRecipes.append(recipe)
+                    }
+                }
+            }
+            delegate?.updateView()
+        }
+
     // MARK: Save a recipe in CoreData
-    func addRecipesToFav(recipe: Recipe) throws {
+    func addRecipeToFav(recipe: Recipe) throws {
         let coreDataRecipe = CoreDataRecipe(context: coreDataStack.viewContext)
         coreDataRecipe.uri = recipe.uri
         coreDataRecipe.label = recipe.label
@@ -52,6 +68,7 @@ class CoreDataManager {
         } catch {
             throw CoreDataError.saveFailed
         }
+        refresh()
     }
 
     // MARK: Check existing recipe with url id
@@ -64,7 +81,7 @@ class CoreDataManager {
     }
 
     // MARK: Delete a recipe
-    func deleteOneRecipes(url: String) throws {
+    func deleteOneRecipeFromFav(url: String) throws {
         request.predicate = NSPredicate(format: "url == %@", url)
         if let favoriteRecipes = try? coreDataStack.viewContext.fetch(request) {
             for recipe in favoriteRecipes {
@@ -73,12 +90,14 @@ class CoreDataManager {
         }
         do {
             try coreDataStack.viewContext.save()
+            refresh()
         } catch {
             throw CoreDataError.deleteFailed
         }
+        refresh()
     }
     // MARK: Delete all recipe
-    func deleteAllRecipes() throws {
+    func deleteAllRecipesFromFav() throws {
         request.predicate = NSPredicate(value: true)
         if let favoriteRecipes = try? coreDataStack.viewContext.fetch(request) {
             for recipe in favoriteRecipes {
@@ -87,13 +106,13 @@ class CoreDataManager {
         }
         do {
             try coreDataStack.viewContext.save()
-
+            refresh()
         } catch {
             throw CoreDataError.deleteFailed
         }
     }
     // MARK: - Helper Methods
-//    Convert CoreData to Recipe
+//    Convert CoreDataRecipe to Recipe
     private func convertCoreDataRecipeToRecipe(_ coreDataRecipe: CoreDataRecipe?) -> Recipe? {
         guard let coreDataRecipe = coreDataRecipe else {
             return nil

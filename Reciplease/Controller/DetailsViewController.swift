@@ -13,7 +13,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTtile: UILabel!
     @IBOutlet weak var ingredientsList: UILabel!
-    @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var favButton: UIBarButtonItem!
     @IBOutlet weak var yieldLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
 
@@ -27,7 +27,7 @@ class DetailsViewController: UIViewController {
         updateView(recipe: selectedRecipe)
     }
     // MARK: - Actions
-    @IBAction func favButtonTapped(_ sender: Any) {
+    @IBAction func favButtonTapped(_ sender: UIBarButtonItem) {
         save(recipe: selectedRecipe)
 
     }
@@ -49,45 +49,50 @@ class DetailsViewController: UIViewController {
               let url = recipe.url,
               let imageUrl = recipe.image,
               let title = recipe.label,
+              let score = recipe.yield,
+              let time = recipe.totalTime,
               let info = recipe.ingredientLines?.joined(separator: "\n -")
 
         else { return }
 
-        recipeImage.load(url: URL(string: imageUrl)!)
+        recipeImage.download(url: URL(string: imageUrl)!)
         recipeTtile.text = title
+        yieldLabel.text = "\(String(score))"
+        totalTimeLabel.text = formatTime(time)
         ingredientsList.text = " -" + info
         if coreDataModel.checkIfItemExist(url: url) {
-            favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favButton.image = UIImage(systemName: "heart.fill")
         } else {
-            favButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            favButton.image = UIImage(systemName: "heart")
         }
     }
     /// Checking fav button
     func checkFavButton() {
         if let recipeUrl = selectedRecipe?.url, coreDataModel.checkIfItemExist(url: recipeUrl) {
-            favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favButton.image = UIImage(systemName: "heart.fill")
         } else {
-            favButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            favButton.image = UIImage(systemName: "heart")
         }
     }
-    // TODO: Verifier le separateur de la liste d'ingredient
     /// Save selected recipe in CoreData
     private func save(recipe: Recipe?) {
         if let recipeUrl = selectedRecipe?.url, let recipe = selectedRecipe {
             if coreDataModel.checkIfItemExist(url: recipeUrl) {
                 do {
-                    try coreDataModel.deleteOneRecipes(url: recipeUrl)
+                    try coreDataModel.deleteOneRecipeFromFav(url: recipeUrl)
+                    favButton.image = UIImage(systemName: "heart")
                 } catch {
                     print(error)
                 }
-                favButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                print("Recipe Delete")
             } else {
                 do {
-                    try coreDataModel.addRecipesToFav(recipe: recipe)
-                    favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    try coreDataModel.addRecipeToFav(recipe: recipe)
+                    favButton.image = UIImage(systemName: "heart.fill")
                 } catch {
                     print(error.localizedDescription)
                 }
+                print("Recipe Save")
             }
         }
     }
@@ -101,15 +106,20 @@ class DetailsViewController: UIViewController {
 // MARK: - Extension
 /// Download image from URL
 extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
+    func download(url: URL) {
+        // download in async way with URLSession
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                  // check MIMI response
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                  // check data
+                let data = data, error == nil,
+                  // convert data to UIImage
+                let image = UIImage(data: data)
+            else { return }
+            DispatchQueue.main.async { [weak self] in
+                self?.image = image
             }
-        }
+        }.resume()
     }
 }

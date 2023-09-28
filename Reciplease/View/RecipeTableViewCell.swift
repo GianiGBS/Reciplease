@@ -29,10 +29,10 @@ class RecipeTableViewCell: UITableViewCell {
     }
     // MARK: - Methods
     func configure(imageUrl: URL, title: String, subtitle: String, yield: Int, totalTime: Int) {
-        backgroundImage.load(url: imageUrl)
+        backgroundImage.download(url: imageUrl)
         titleLabel.text = title
         subtitleLabel.text = subtitle
         yieldLabel.text = String(yield)
-        totalTimeLabel.text = String(totalTime)
+        totalTimeLabel.text = formatTime(totalTime)
     }
 }

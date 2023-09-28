@@ -96,7 +96,6 @@ extension SearchViewController: UITableViewDataSource {
     }
     // MARK: Number of Rows in Sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         ingredientSearchList.count
     }
     // MARK: Cell for Row At
