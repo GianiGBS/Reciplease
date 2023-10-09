@@ -9,30 +9,35 @@ import Foundation
 import Alamofire
 
 // MARK: - Verified Key
-func verifiedKey(accesKey: String) -> String {
-    let apiKey = Bundle.main.object(forInfoDictionaryKey: accesKey) as? String
+extension String {
+    var verifiedKey: String {
+        let apiKey = Bundle.main.object(forInfoDictionaryKey: self) as? String
 
-    guard let key = apiKey, !key.isEmpty else {
-        return "API key does not exist"
-    }
-    return "\(key)"
-}
-
-// MARK: - Convert Int to Time
-func formatTime(_ minutes: Int) -> String {
-    if minutes < 60 {
-        return "\(minutes) min"
-    } else if minutes == 60 {
-        return "1 h"
-    } else {
-        let hours = minutes / 60
-        let remainingMinutes = minutes % 60
-        if remainingMinutes == 0 {
-            return "\(hours) h"
-        } else {
-            return "\(hours) h \(remainingMinutes) min"
+        guard let key = apiKey, !key.isEmpty else {
+            return "API key does not exist"
         }
+        return key
     }
+}
+// MARK: - Convert Int to Time
+extension Int {
+    func formatTime() -> String {
+            let hours = self / 3600
+            let minutes = (self % 3600) / 60
+            let seconds = self % 60
+
+            var formattedTime = ""
+            if hours > 0 {
+                formattedTime += "\(hours)h "
+            }
+            if minutes > 0 {
+                formattedTime += "\(minutes)min "
+            }
+            if seconds > 0 {
+                formattedTime += "\(seconds)s"
+            }
+            return formattedTime.trimmingCharacters(in: .whitespaces)
+        }
 }
 
 // MARK: - View Protocol

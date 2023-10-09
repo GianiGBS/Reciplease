@@ -33,6 +33,6 @@ class RecipeTableViewCell: UITableViewCell {
         titleLabel.text = title
         subtitleLabel.text = subtitle
         yieldLabel.text = String(yield)
-        totalTimeLabel.text = formatTime(totalTime)
+        totalTimeLabel.text = totalTime.formatTime()
     }
 }

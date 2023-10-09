@@ -11,7 +11,7 @@ import CoreData
 class CoreDataManager {
 
     // MARK: - Properties
-    var allRecipes: [Recipe] = []
+    var favRecipes: [Recipe] = []
     private let coreDataStack: CoreDataStack
     private let request: NSFetchRequest<CoreDataRecipe> = CoreDataRecipe.fetchRequest()
     public weak var delegate: ViewDelegate?
@@ -24,28 +24,28 @@ class CoreDataManager {
 
     // MARK: Get all recipes
     func fetchFavRecipes() -> [Recipe] {
-        allRecipes.removeAll()
+        favRecipes.removeAll()
         guard let coreDataRecipes = try? coreDataStack.viewContext.fetch(request) else {
             return []
         }
         for coreDataRecipe in coreDataRecipes {
             if let recipe = convertCoreDataRecipeToRecipe(coreDataRecipe) {
-                self.allRecipes.append(recipe)
+                self.favRecipes.append(recipe)
             }
         }
-        return allRecipes
+        return favRecipes
     }
 
     // MARK: - Refresh CoreData
         func refresh() {
             // Erase all Recipes form list
-            allRecipes.removeAll()
+            favRecipes.removeAll()
             // Fetch all fav recipes from CoreData
             if let coreDataRecipes = try? coreDataStack.viewContext.fetch(request) {
                 for coreDataRecipe in coreDataRecipes {
                     if let recipe = convertCoreDataRecipeToRecipe(coreDataRecipe) {
                         // Add all Recipes to list
-                        allRecipes.append(recipe)
+                        favRecipes.append(recipe)
                     }
                 }
             }
@@ -54,6 +54,12 @@ class CoreDataManager {
 
     // MARK: Save a recipe in CoreData
     func addRecipeToFav(recipe: Recipe) throws {
+        if let recipeUrl = recipe.url {
+            if checkIfItemExist(url: recipeUrl) {
+                // If item exist delete first
+                try deleteOneRecipeFromFav(url: recipeUrl)
+            }
+        }
         let coreDataRecipe = CoreDataRecipe(context: coreDataStack.viewContext)
         coreDataRecipe.uri = recipe.uri
         coreDataRecipe.label = recipe.label
@@ -129,10 +135,13 @@ class CoreDataManager {
     }
 // MARK: - CoreDataError
 enum CoreDataError: Error {
+    case invalidRecipe
     case saveFailed
     case deleteFailed
     var localizedDescription: String {
         switch self {
+        case.invalidRecipe:
+            return "Recipe already exist"
         case.saveFailed:
             return "We were unable to save the recipe."
         case.deleteFailed:

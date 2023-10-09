@@ -15,7 +15,7 @@
 		C2576F3C2A351B15006ECE33 /* CoreDataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */; };
 		C262DCC22A68155000AE7DAD /* MockEdamamSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCC12A68155000AE7DAD /* MockEdamamSession.swift */; };
 		C262DCC62A6FFCA900AE7DAD /* Recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = C262DCC52A6FFCA900AE7DAD /* Recipes.json */; };
-		C262DCCA2A70049C00AE7DAD /* EdamamServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */; };
+		C262DCCA2A70049C00AE7DAD /* EdamamServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCC92A70049C00AE7DAD /* EdamamServiceTests.swift */; };
 		C262DCCC2A7077A400AE7DAD /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCCB2A7077A400AE7DAD /* CoreDataTests.swift */; };
 		C262DCCE2A708ED400AE7DAD /* CoreDataStackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C262DCCD2A708ED400AE7DAD /* CoreDataStackTest.swift */; };
 		C299CA072A2E5B1600437BFE /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C299CA052A2E5B1600437BFE /* Reciplease.xcdatamodeld */; };
@@ -25,7 +25,6 @@
 		C2BA63A029E5B5CE0052484C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2BA639F29E5B5CE0052484C /* Assets.xcassets */; };
 		C2BA63A329E5B5CE0052484C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2BA63A129E5B5CE0052484C /* LaunchScreen.storyboard */; };
 		C2BA63BB29E625AE0052484C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA63BA29E625AE0052484C /* SearchViewController.swift */; };
-		C2BA63BD29E625C90052484C /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BA63BC29E625C90052484C /* FavoriteViewController.swift */; };
 		C2BB2A5829FB2B950054F369 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A5729FB2B950054F369 /* Recipe.swift */; };
 		C2BB2A642A02A42C0054F369 /* EdamamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A632A02A42C0054F369 /* EdamamService.swift */; };
 		C2BB2A662A02B2040054F369 /* EdamamURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB2A652A02B2040054F369 /* EdamamURL.swift */; };
@@ -56,7 +55,7 @@
 		C2576F3B2A351B15006ECE33 /* CoreDataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecipe.swift; sourceTree = "<group>"; };
 		C262DCC12A68155000AE7DAD /* MockEdamamSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEdamamSession.swift; sourceTree = "<group>"; };
 		C262DCC52A6FFCA900AE7DAD /* Recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipes.json; sourceTree = "<group>"; };
-		C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamServiceTest.swift; sourceTree = "<group>"; };
+		C262DCC92A70049C00AE7DAD /* EdamamServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamServiceTests.swift; sourceTree = "<group>"; };
 		C262DCCB2A7077A400AE7DAD /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		C262DCCD2A708ED400AE7DAD /* CoreDataStackTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTest.swift; sourceTree = "<group>"; };
 		C299CA062A2E5B1600437BFE /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
@@ -69,7 +68,6 @@
 		C2BA63A429E5B5CE0052484C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2BA63B129E5B95C0052484C /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2BA63BA29E625AE0052484C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		C2BA63BC29E625C90052484C /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		C2BB2A5729FB2B950054F369 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		C2BB2A632A02A42C0054F369 /* EdamamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamService.swift; sourceTree = "<group>"; };
 		C2BB2A652A02B2040054F369 /* EdamamURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamURL.swift; sourceTree = "<group>"; };
@@ -119,7 +117,7 @@
 				C262DCC12A68155000AE7DAD /* MockEdamamSession.swift */,
 				C2FBDC2F2A86F6B300CD3982 /* MockedData.swift */,
 				C262DCC52A6FFCA900AE7DAD /* Recipes.json */,
-				C262DCC92A70049C00AE7DAD /* EdamamServiceTest.swift */,
+				C262DCC92A70049C00AE7DAD /* EdamamServiceTests.swift */,
 			);
 			path = EdamamTest;
 			sourceTree = "<group>";
@@ -175,7 +173,6 @@
 				C2BA63BA29E625AE0052484C /* SearchViewController.swift */,
 				C2BB2A712A0D70F50054F369 /* ListTableViewController.swift */,
 				C2BB2A6F2A0C01890054F369 /* DetailsViewController.swift */,
-				C2BA63BC29E625C90052484C /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -375,7 +372,6 @@
 				C24FB8BA2A8D0EAA000ECC51 /* Hit.swift in Sources */,
 				C2576F3C2A351B15006ECE33 /* CoreDataRecipe.swift in Sources */,
 				C2BB2A642A02A42C0054F369 /* EdamamService.swift in Sources */,
-				C2BA63BD29E625C90052484C /* FavoriteViewController.swift in Sources */,
 				C299CA072A2E5B1600437BFE /* Reciplease.xcdatamodeld in Sources */,
 				C2BA639629E5B5CD0052484C /* SceneDelegate.swift in Sources */,
 				C2BB2A702A0C01890054F369 /* DetailsViewController.swift in Sources */,
@@ -387,7 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2FBDC302A86F6B300CD3982 /* MockedData.swift in Sources */,
-				C262DCCA2A70049C00AE7DAD /* EdamamServiceTest.swift in Sources */,
+				C262DCCA2A70049C00AE7DAD /* EdamamServiceTests.swift in Sources */,
 				C262DCC22A68155000AE7DAD /* MockEdamamSession.swift in Sources */,
 				C262DCCC2A7077A400AE7DAD /* CoreDataTests.swift in Sources */,
 				C262DCCE2A708ED400AE7DAD /* CoreDataStackTest.swift in Sources */,

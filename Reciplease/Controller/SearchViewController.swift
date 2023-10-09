@@ -49,7 +49,7 @@ class SearchViewController: UIViewController {
             in: .whitespacesAndNewlines).trimmingCharacters(
                 in: .punctuationCharacters), !ingredientName.isEmpty  else {
                 presentAlert(title: "Entrée vide",
-                                         message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
+                             message: "Il faut entrer des ingredients.\nVeuillez réessayer.")
             return
         }
         ingredientSearchList.append(ingredientName)

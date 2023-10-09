@@ -58,7 +58,7 @@ class DetailsViewController: UIViewController {
         recipeImage.download(url: URL(string: imageUrl)!)
         recipeTtile.text = title
         yieldLabel.text = "\(String(score))"
-        totalTimeLabel.text = formatTime(time)
+        totalTimeLabel.text = time.formatTime()
         ingredientsList.text = " -" + info
         if coreDataModel.checkIfItemExist(url: url) {
             favButton.image = UIImage(systemName: "heart.fill")

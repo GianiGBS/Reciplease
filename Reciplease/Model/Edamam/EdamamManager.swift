@@ -10,7 +10,7 @@ import Foundation
 class EdamamManager {
 
     // MARK: - Properties
-    private (set) var recipeList: [Recipe] = []
+    private (set) var searchRecipes: [Recipe] = []
     let recipeService = EdamamService()
     public weak var delegate: ViewDelegate?
 
@@ -22,8 +22,8 @@ class EdamamManager {
             DispatchQueue.main.async { [weak self] in
                 if let error = error {
                     self?.handleError(error)
-                } else if let recipes = recipes {
-                    self?.recipeList = (recipes.hits?.compactMap {$0.recipe})!
+                } else if let recipes = recipes, let hits = recipes.hits {
+                    self?.searchRecipes = hits.compactMap {$0.recipe}
                     self?.delegate?.updateView()
                 }
             }
